@@ -3,13 +3,18 @@ import { getDbUser } from '@/utils/supabase/auth-helpers/queries'
 import { createClient } from '@/utils/supabase/server'
 import { User } from '@supabase/supabase-js'
 import { DashboardHeader } from '../Header/DashboardHeader'
+import { RedirectType, redirect } from 'next/navigation'
 
 export const DashboardLayout = async ({
   children,
 }: {
   children: React.ReactNode
 }) => {
-  // const supabase = createClient()
+  const supabase = createClient()
+  const {data: {user}} = await supabase.auth.getUser()
+  if (!user) {
+    return redirect("/signin/password_signin")
+  }
   // const { user }: { user: User } = (await supabase.auth.getUser()).data as {
   //   user: User
   // }

@@ -1,8 +1,8 @@
 import { SetupYourPage } from '@/components/Forms/SetupYourPage'
 import { getDbUser } from '@/utils/supabase/auth-helpers/queries'
 import { createClient } from '@/utils/supabase/server'
-import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Setup your page',
@@ -10,9 +10,12 @@ export const metadata: Metadata = {
 export default async function Page() {
   const supabase = createClient()
   const dbUser = await getDbUser(supabase)
-  // if (!dbUser) {
-  //   return redirect('/signin')
-  // }
+  if (!dbUser) {
+    return redirect('/signin/password_signin')
+  }
+  if (dbUser.stepped) {
+    return redirect('/dashboard')
+  }
   return (
     <>
       {/* <div className="mb-6 max-w-full max-sm:pt-8 sm:pt-24">
