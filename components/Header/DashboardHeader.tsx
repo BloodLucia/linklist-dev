@@ -16,7 +16,7 @@ export const DashboardHeader: React.FC<{ username?: string }> = ({
     setIsLoading(false)
   }
   return (
-    <header className="h-[60px] w-full bg-white border-b border-b-[var(--btngrey-color)] fixed top-0 left-0 right-0 box-border">
+    <header className="h-[60px] w-full bg-white fixed top-0 left-0 right-0 box-border md:border-b">
       <div className="max-w-6xl flex justify-between items-center mx-auto h-full max-md:w-full max-md:px-6">
         <a href="/" className="font-semibold text-xl" aria-label="Logo">
           Oh My Link

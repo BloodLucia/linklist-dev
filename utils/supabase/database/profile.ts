@@ -5,6 +5,7 @@ import { createClient } from '../server'
 import { getToastRedirect } from '@/utils/helpers/helpers'
 import { Database, Tables } from '@/db_types'
 import { getDbUser } from '../auth-helpers/queries'
+import { cache } from 'react'
 
 const existsProfileByUserName = async (username: string) => {
   const supabase = createClient()
@@ -171,6 +172,25 @@ export const addLink = async (formData: FormData) => {
   }
   return getToastRedirect('/dashboard/links', 'error', 'You cloud be add link.')
 }
+
+export const getHeadersForUser = cache(
+  async (supabase: SupabaseClient<Database>) => {
+    const dbUser: Tables<'users'> = (await getDbUser(
+      supabase
+    )) as Tables<'users'>
+    const dbProfile: Tables<'profiles'> = (await getCurrentUserProfile(
+      supabase
+    )) as Tables<'profiles'>
+    return (
+      await supabase
+        .from('headers')
+        .select('*')
+        .eq('profile_id', dbProfile.id)
+        .eq('user_id', dbUser.user_id)
+        .eq('hide', false)
+    ).data
+  }
+)
 
 export const getLinksForUser = async (supabase: SupabaseClient<Database>) => {
   const {
