@@ -9,6 +9,32 @@ import {
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import type { Metadata, ResolvingMetadata } from 'next'
+
+type Props = {
+  params: { id: string }
+}
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const id = params.id  
+  const metaMap: Record<string, Metadata> = {
+    'password_signin': {
+      title: 'Sign In · Oh My Link',
+      description: 'Sign In · Oh My Link',
+    },
+    'signup': {
+      title: 'Sign Up · Oh My Link',
+      description: 'Sign Up · Oh My Link',
+    },
+  }
+
+  return {
+    title: metaMap[id].title,
+    description: metaMap[id].description,
+  }
+}
 
 export default async function SignIn({
   params,
@@ -55,14 +81,20 @@ export default async function SignIn({
         {viewProp === 'password_signin' ? (
           <>
             Don&apos;t have an account?{' '}
-            <a href='/signin/signup' className="cursor-pointer underline text-[var(--blue-color)]">
+            <a
+              href="/signin/signup"
+              className="cursor-pointer underline text-[var(--blue-color)]"
+            >
               Sign up
             </a>
           </>
         ) : (
           <>
             Already have an account?{' '}
-            <a href='/signin/password_signin' className="cursor-pointer underline text-[var(--blue-color)]">
+            <a
+              href="/signin/password_signin"
+              className="cursor-pointer underline text-[var(--blue-color)]"
+            >
               Sign in
             </a>
           </>
