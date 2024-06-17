@@ -22,19 +22,11 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const isAuthorized = user && dbUser
 
-  const protectedPaths = ['/setup-your-page', '/account-settings', '/dashboard']
-
-  // if (
-  //   !isAuthorized &&
-  //   !protectedPaths.includes(pathname) &&
-  //   !protectedPaths[0].startsWith('/dashboard')
-  // ) {
-  //   return NextResponse.next()
-  // }
+  const protectedPaths = ['/setup-your-page', '/account-settings']
 
   if (
     !isAuthorized &&
-    (pathname.startsWith('/dashboard') || protectedPaths.includes(pathname)) &&
+    pathname.startsWith('/dashboard') &&
     !pathname.startsWith('/signin')
   ) {
     return NextResponse.redirect(
@@ -42,33 +34,11 @@ export async function middleware(request: NextRequest) {
     )
   }
 
-  // if (
-  //   !isAuthorized &&
-  //   protectedPaths.includes(pathname) &&
-  //   !pathname.startsWith('/signin')
-  // ) {
-  //   return NextResponse.redirect(
-  //     new URL('/signin/password_signin', request.url)
-  //   )
-  // }
-
-  // if (!isAuthorized && !pathname.startsWith('/signin')) {
-  //   return NextResponse.redirect(
-  //     new URL('/signin/password_signin', request.url)
-  //   )
-  // }
-
-  // if (isAuthorized && dbUser.stepped && pathname === '/setup-your-page') {
-  //   return NextResponse.redirect(new URL('/dashboard', request.url))
-  // }
-
-  // if (isAuthorized && !dbUser.stepped && pathname !== '/setup-your-page') {
-  //   return NextResponse.redirect(new URL('/setup-your-page', request.url))
-  // }
-
-  // if (isAuthorized && pathname.startsWith('/signin')) {
-  //   return NextResponse.redirect(new URL('/dashboard', request.url))
-  // }
+  if (!isAuthorized && protectedPaths.includes(pathname) && !pathname.startsWith("/signin")) {
+    return NextResponse.redirect(
+      new URL('/signin/password_signin', request.url)
+    )
+  }
 
   response = NextResponse.next()
 

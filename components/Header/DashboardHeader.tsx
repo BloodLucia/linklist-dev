@@ -4,6 +4,7 @@ import { useLoaing } from '@/hooks/use-loading'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { signOut } from '@/utils/supabase/auth-helpers/server'
 import { usePathname } from 'next/navigation'
+import { Loader } from '../Loader/Loader'
 
 export const DashboardHeader: React.FC<{ username?: string }> = ({
   username,
@@ -28,7 +29,7 @@ export const DashboardHeader: React.FC<{ username?: string }> = ({
               type="submit"
               className="hover:bg-[var(--danger-dark-color)] px-4 h-[40px] rounded bg-[var(--danger-color)] flex justify-center items-center text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {isLoading ? 'Loading...' : 'Sign Out'}
+              {isLoading ? <Loader className='text-white'>Loading...</Loader> : 'Sign Out'}
             </button>
           </form>
         </div>
