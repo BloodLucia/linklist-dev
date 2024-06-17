@@ -24,11 +24,9 @@ export default function RootLayout({
           </div>
         </div>
       </header> */}
-      <div className="max-sm:mt-0 mt-[60px] flex-grow">
-        <div className="max-sm:w-full max-sm:min-h-screen max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:bg-white max-sm:px-6 max-sm:py-0 py-[64px]">
-          <div className="max-sm:w-full max-sm:p-0 w-[400px] rounded bg-white p-8 mx-auto">
-            {children}
-          </div>
+      <div className="max-sm:w-full max-sm:min-h-screen max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:bg-white max-sm:px-6">
+        <div className="max-sm:w-full max-sm:p-0 w-[400px] rounded bg-white p-8 mx-auto">
+          {children}
         </div>
       </div>
     </div>
