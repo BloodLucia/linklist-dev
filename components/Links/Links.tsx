@@ -1,13 +1,7 @@
 'use client'
 
 import { Tables } from '@/db_types'
-import { handleRequest } from '@/utils/supabase/auth-helpers/client'
-import { addLink } from '@/utils/supabase/database/profile'
-import { LoaderCircle } from 'lucide-react'
-import { useRef, useState } from 'react'
-import { Modal } from '../Modal/Modal'
-import { useChanged } from '@/hooks/use-changed'
-import { AddLink } from '../Forms/AddLink'
+import { useState } from 'react'
 
 export const Links: React.FC<{ links?: Tables<'links'>[] | null }> = ({
   links = [],
