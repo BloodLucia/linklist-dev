@@ -45,7 +45,7 @@ export const ProfileHeaders: React.FC<{
                 onClick={() => handleHeaderClick(header)}
                 className="w-full rounded bg-white shadow-sm px-6 py-5 relative cursor-pointer flex justify-center items-center"
               >
-                {header.title}
+                <div className="text-sm font-bold">{header.title}</div>
               </div>
             )
           })}
@@ -70,10 +70,11 @@ export const ProfileHeaders: React.FC<{
           <input type="hidden" name="id" defaultValue={selectHeader?.id} />
           <input type="hidden" name="pathname" defaultValue={usePathname()} />
           <button
+            type="submit"
             disabled={disableSave || isLoading}
             className="disabled:opacity-50 disabled:cursor-not-allowed oml-bg oml-btn rounded flex justify-center items-center text-white mt-4"
           >
-            {isLoading ? <Loader color='#ffffff' /> : 'SAVE'}
+            {isLoading ? <Loader color="#ffffff" /> : 'SAVE'}
           </button>
         </form>
       </Modal>

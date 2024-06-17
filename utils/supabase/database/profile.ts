@@ -176,6 +176,7 @@ export const updateProfile = async (formData: FormData) => {
 export const addLink = async (formData: FormData) => {
   const name = String(formData.get('name')).trim()
   const url = String(formData.get('url')).trim()
+  const pathname = String(formData.get('pathname')).trim()
   const supabase = createClient()
   const dbUser = await getDbUser(supabase)
   const dbProfile = await getCurrentUserProfile(supabase)
@@ -190,14 +191,10 @@ export const addLink = async (formData: FormData) => {
       })
       .select()
     if (error) {
-      return getToastRedirect('/dashboard/links', 'error', error.message)
+      return getToastRedirect(pathname, 'error', error.message)
     }
     if (data && data.length > 0) {
-      return getToastRedirect(
-        '/dashboard/links',
-        'status',
-        'You are added a link.'
-      )
+      return getToastRedirect(pathname, 'status', 'You are added a link.')
     }
   } else {
     await supabase.auth.signOut()
@@ -207,7 +204,7 @@ export const addLink = async (formData: FormData) => {
       'You need to login first.'
     )
   }
-  return getToastRedirect('/dashboard/links', 'error', 'You cloud be add link.')
+  return getToastRedirect(pathname, 'error', 'You cloud be add link.')
 }
 
 export const getHeadersForUser = cache(

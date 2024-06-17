@@ -1,51 +1,67 @@
-import { handleRequest } from '@/utils/supabase/auth-helpers/client'
-import { addLink } from '@/utils/supabase/database/profile'
-import { LoaderCircle } from 'lucide-react'
-import { useRef, useState } from 'react'
-import { NewModal } from '../Modal/NewModal'
+'use client'
 
-export const AddLink: React.FC<{
-  modalVisible: boolean
-  onModalClose: () => void
-}> = ({ modalVisible, onModalClose }) => {
-  const formRef = useRef<HTMLFormElement>(null)
+import { usePathname, useRouter } from 'next/navigation'
+import { Input } from '../Input/Input'
+import { Modal } from '../Modal/Modal'
+import { useRef, useState } from 'react'
+import { addLink } from '@/utils/supabase/database/profile'
+import { Loader } from '../Loader/Loader'
+import { handleRequest } from '@/utils/supabase/auth-helpers/client'
+
+export const AddLink: React.FC = () => {
+  const router = useRouter()
+  const formRef = useRef<HTMLFormElement | null>(null)
+  const [isOpenModal, setIsOpenModal] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
-    await handleRequest(e, addLink)
+    await handleRequest(e, addLink, router)
     setIsLoading(false)
-    // setAddLinkModalVisible(false)
-    // formRef.current?.reset()
+    setIsOpenModal(false)
+    formRef.current?.reset()
   }
+
   return (
-    <NewModal isOpen onClose={onModalClose}>
-      <form className="pb-8" onSubmit={handleSubmit}>
-            <div className="flex flex-col items-stretch gap-y-4">
-              <input
-                type="text"
-                name="name"
-                className="bl-input"
-                placeholder="title"
-                autoComplete="off"
-                required
-              />
-              <input
-                type="text"
-                name="url"
-                className="bl-input"
-                placeholder="URL"
-                autoComplete="off"
-                required
-              />
-            </div>
-            <button
-              disabled={isLoading}
-              type="submit"
-              className="disabled:cursor-not-allowed oml-bg oml-btn absolute bottom-0 left-0 right-0 flex justify-center items-center"
-            >
-              {isLoading ? <LoaderCircle className="animate-spin" /> : 'SAVE'}
-            </button>
-          </form>
-    </NewModal>
+    <>
+      <div className="grid grid-flow-col gap-x-2 ">
+        <button
+          className="oml-bg oml-btn text-white rounded flex justify-center items-center"
+          onClick={() => setIsOpenModal(true)}
+        >
+          ADD LINK
+        </button>
+        <button className="bg-[--primary-color] text-white rounded flex justify-center items-center font-semibold">
+          ADD EMBED
+        </button>
+      </div>
+      <Modal
+        title="Add"
+        visible={isOpenModal}
+        onClose={() => setIsOpenModal(false)}
+      >
+        <form
+          onSubmit={handleSubmit}
+          ref={formRef}
+          action="POST"
+          className="flex flex-col items-stretch gap-y-4"
+        >
+          <Input name="name" placeholder="Title" required autoComplete="off" />
+          <Input name="url" placeholder="URL" required autoComplete="off" />
+          <Input
+            type="hidden"
+            name="pathname"
+            placeholder="URL"
+            defaultValue={usePathname()}
+          />
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="disabled:opacity-50 disabled:cursor-not-allowed oml-bg oml-btn rounded flex justify-center items-center text-white mt-4"
+          >
+            {isLoading ? <Loader color="#ffffff" /> : 'SAVE'}
+          </button>
+        </form>
+      </Modal>
+    </>
   )
 }
