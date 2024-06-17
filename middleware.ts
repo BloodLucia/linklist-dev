@@ -22,8 +22,13 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const isAuthorized = user && dbUser
 
-  // if (pathname.startsWith('/profile')) {
-  //   // request.nextUrl.
+  // const protectedPaths = ['/dashboard', '/setup-your-page', '/account-settings']
+
+  // if (
+  //   !isAuthorized &&
+  //   !protectedPaths.includes(pathname) &&
+  //   !protectedPaths[0].startsWith('/dashboard')
+  // ) {
   //   return NextResponse.next()
   // }
 

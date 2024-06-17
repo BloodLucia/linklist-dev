@@ -1,5 +1,4 @@
 import { createClient } from '@/utils/supabase/server'
-import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Quicksand } from 'next/font/google'
 import cn from 'classnames'
@@ -7,12 +6,27 @@ import {
   getLinksByUserName,
   getProfileByUserName,
 } from '@/utils/supabase/database/profile'
+import type { Metadata, ResolvingMetadata } from 'next'
 
 const quicksand = Quicksand({ weight: 'variable', subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'Profile',
+type Props = {
+  params: { username: string }
 }
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { username } = params
+  const supabase = createClient()
+  const dbProfile = await getProfileByUserName(username, supabase)
+
+  return {
+    title: dbProfile?.title,
+    description: dbProfile?.description,
+  }
+}
+
 export default async function ProfilePage({
   params,
 }: {
