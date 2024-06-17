@@ -1,4 +1,5 @@
 import { DashboardHeader } from '@/components/Header/DashboardHeader'
+import { BottomNav } from '@/components/Mobile/BottomNav'
 import { ProfilePreview } from '@/components/ProfilePreview/ProfilePreview'
 import { Tabs } from '@/components/Tabs/Tabs'
 import { createClient } from '@/utils/supabase/server'
@@ -26,8 +27,9 @@ export default async function Layout({
         <div className="grid grid-flow-col auto-cols-fr">
           <ProfilePreview username={data?.username} />
           <div className="md:p-8 h-screen">
-            <Tabs />
+            {/* <Tabs /> */}
             {children}
+            <BottomNav />
           </div>
         </div>
       </div>
