@@ -4,7 +4,7 @@ import { Tables } from '@/db_types'
 import { Modal } from '../Modal/Modal'
 import { Input } from '../Input/Input'
 import { useRef, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { updateHeader } from '@/utils/supabase/database/profile'
 import { Loader } from '../Loader/Loader'
@@ -12,6 +12,7 @@ import { Loader } from '../Loader/Loader'
 export const ProfileHeaders: React.FC<{
   headers?: Tables<'headers'>[] | null
 }> = ({ headers }) => {
+  const router = useRouter()
   const [disableSave, setDisableSave] = useState(true)
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [selectHeader, setSelectHeader] = useState<Tables<'headers'>>()
@@ -23,7 +24,7 @@ export const ProfileHeaders: React.FC<{
   }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
-    await handleRequest(e, updateHeader)
+    await handleRequest(e, updateHeader, router)
     setIsLoading(false)
     setModalIsOpen(false)
     formRef.current?.reset()
