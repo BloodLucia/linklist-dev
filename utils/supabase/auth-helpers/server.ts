@@ -10,6 +10,54 @@ export async function redirectToPath(path: string) {
   return redirect(path)
 }
 
+export const signInWithUsernameAndPassword = async (formData: FormData) => {
+  const username = String(formData.get('username')).trim()
+  const password = String(formData.get('password')).trim()
+  const supabase = createClient()
+  const cookieStore = cookies()
+  let redirectURL: string
+  const { data, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('username', username)
+    .maybeSingle()
+
+  // 未能找到数据不会报错
+  if (error) {
+    redirectURL = getToastRedirect('/signin', 'error', error.message)
+  }
+
+  if (data) {
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password,
+    })
+    if (error) {
+      redirectURL = getToastRedirect('/signin', 'error', error.message)
+    } else if (user) {
+      cookieStore.set('preferredSignInView', 'password_signin', { path: '/' })
+      redirectURL = getToastRedirect('/', 'status', 'You are now logged')
+    } else {
+      redirectURL = getToastRedirect(
+        '/signin',
+        'error',
+        'Internal server error'
+      )
+    }
+  } else {
+    redirectURL = getToastRedirect(
+      '/signin',
+      'error',
+      'Invalid login credentials'
+    )
+  }
+
+  return redirectURL
+}
+
 export const signInWithPassword = async (formData: FormData) => {
   const cookieStore = cookies()
   const supabase = createClient()
