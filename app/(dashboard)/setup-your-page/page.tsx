@@ -15,7 +15,7 @@ export default async function Page() {
   }
   return (
     <>
-      <div className="mb-6 max-w-full max-sm:pt-8 sm:pt-24">
+      {/* <div className="mb-6 max-w-full max-sm:pt-8 sm:pt-24">
         <div className="font-bold text-center text-[var(--dark-color)] leading-7 text-2xl">
           Setup your page
         </div>
@@ -26,7 +26,7 @@ export default async function Page() {
           </span>{' '}
           🎉
         </div>
-      </div>
+      </div> */}
       <SetupYourPage user={dbUser} />
     </>
   )

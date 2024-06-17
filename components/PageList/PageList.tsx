@@ -9,7 +9,7 @@ export const PageList: React.FC<{ pageList: Tables<'profiles'>[] }> = ({
       {pageList &&
         pageList.map((page) => {
           return (
-            <div className="p-3 border flex gap-x-3 items-center">
+            <div key={page.id} className="p-3 border flex gap-x-3 items-center">
               <div className="w-[45px] h-[45px] rounded-full overflow-hidden">
                 <Image
                   src={`${page.picture}`}
