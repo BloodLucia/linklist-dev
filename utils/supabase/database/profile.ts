@@ -7,14 +7,51 @@ import { Database, Tables } from '@/db_types'
 import { getDbUser } from '../auth-helpers/queries'
 import { cache } from 'react'
 
-const existsProfileByUserName = async (username: string) => {
+export const updateHeader = async (formData: FormData) => {
   const supabase = createClient()
-  const { data, error } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('username', username)
-    .maybeSingle()
-  return !error && data != null
+  const id = Number(formData.get('id')).valueOf()
+  const title = String(formData.get('title')).trim()
+  const pathname = String(formData.get('pathname')).trim()
+  let redirectUrl: string
+
+  const { error } = await supabase
+    .from('headers')
+    .update({ title })
+    .eq('id', id)
+
+  if (error) {
+    redirectUrl = getToastRedirect(pathname, 'error', error.message)
+  }
+
+  redirectUrl = getToastRedirect(
+    pathname,
+    'status',
+    'You are updated a header.'
+  )
+
+  return redirectUrl
+}
+
+export const createHeader = async (formData: FormData) => {
+  const supabase = createClient()
+  const title = String(formData.get('title')).trim()
+  const pathname = String(formData.get('pathname')).trim()
+  const dbProfile = (await getCurrentUserProfile(
+    supabase
+  )) as Tables<'profiles'>
+  let redirectUrl: string
+
+  const { error } = await supabase
+    .from('headers')
+    .insert({ title, profile_id: dbProfile?.id })
+
+  if (error) {
+    redirectUrl = getToastRedirect(pathname, 'error', error.message)
+  }
+
+  redirectUrl = getToastRedirect(pathname, 'status', 'You are added a header.')
+
+  return redirectUrl
 }
 
 export const createProfileForUser = async (formData: FormData) => {

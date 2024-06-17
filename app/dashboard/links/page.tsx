@@ -1,11 +1,10 @@
 import { AddHeader } from '@/components/Forms/AddHeader'
-import { Modal } from '@/components/Modal/Modal'
+import { ProfileHeaders } from '@/components/Profile/ProfileHeaders'
 import {
   getHeadersForUser,
   getLinksForUser,
 } from '@/utils/supabase/database/profile'
 import { createClient } from '@/utils/supabase/server'
-import { Plus } from 'lucide-react'
 
 export default async function Page() {
   const supabase = createClient()
@@ -13,6 +12,8 @@ export default async function Page() {
     getLinksForUser(supabase),
     getHeadersForUser(supabase),
   ])
+
+  console.log(headers)
 
   return (
     <>
@@ -24,7 +25,8 @@ export default async function Page() {
           ADD EMBED
         </button>
       </div>
-     <AddHeader />
+      <AddHeader />
+      <ProfileHeaders headers={headers} />
     </>
   )
 }

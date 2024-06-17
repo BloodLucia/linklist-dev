@@ -22,7 +22,7 @@ export type Database = {
           created_at?: string
           hide?: boolean
           id?: number
-          profile_id?: string
+          profile_id: string
           title: string
           user_id?: string
         }
