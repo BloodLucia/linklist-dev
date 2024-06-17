@@ -36,20 +36,38 @@ export default async function SignIn({
   // Check if the user is already logged in and redirect to the account page if so
   const supabase = createClient()
 
-  // const {
-  //   data: { user },
-  // } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
-  // if (user && viewProp !== 'update_password') {
-  //   return redirect('/dashboard')
-  // } else if (!user && viewProp === 'update_password') {
-  //   return redirect('/signin')
-  // }
+  if (user && viewProp !== 'update_password') {
+    return redirect('/')
+  } else if (!user && viewProp === 'update_password') {
+    return redirect('/signin')
+  }
 
   return (
     <>
       {viewProp === 'password_signin' && <PasswordSignIn />}
       {viewProp === 'signup' && <SignUp />}
+
+      <div className="px-8 text-center text-xs text-[var(--grey-color)] mt-5">
+        {viewProp === 'password_signin' ? (
+          <>
+            Don't have an account?{' '}
+            <a href='/signin/signup' className="cursor-pointer underline text-[var(--blue-color)]">
+              Sign up
+            </a>
+          </>
+        ) : (
+          <>
+            Already have an account?{' '}
+            <a href='/signin/password_signin' className="cursor-pointer underline text-[var(--blue-color)]">
+              Sign in
+            </a>
+          </>
+        )}
+      </div>
     </>
   )
 }

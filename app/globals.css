@@ -43,8 +43,8 @@
   background-color: var(--greybg-color);
 }
 
-.bl-input:focus {
-  border: 1px solid var(--blue-color);
+.bl-input:focus-within {
+  background: linear-gradient(#c058ff, var(--danger-color));
 }
 
 .bl-input::placeholder {
