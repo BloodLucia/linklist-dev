@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --blackbg-color: #161517;
+  --dark-color: #0d0c22;
+  --blue-color: #0095f6;
+  --blue-dark-color: #0075e4;
+  --danger-color: #ff4963;
+  --danger-dark-color: #e02b45;
+  --primary-color: #0095f6;
+  --grey-color: #6e6d7a;
+  --greybg-color: #e7e7e9;
+  --success-color: #70c050;
+  --btngrey-color: #f3f3f4;
+
+  --btn-height: 40px;
+}
+
+.bl-input {
+  background-color: rgba(13, 12, 34, 0.05);
+  border: 1px solid transparent;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  padding-left: 16px;
+  padding-right: 16px;
+  line-height: inherit;
+  color: inherit;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.bl-input.preffix-label {
+  padding-left: 63px;
+  padding-right: 32px;
+}
+
+.bl-input:hover {
+  background-color: var(--greybg-color);
+}
+
+.bl-input:focus {
+  border: 1px solid var(--blue-color);
+}
+
+.bl-input::placeholder {
+  color: var(--grey-color);
+}
+
+.oml-bg {
+  transition: 0.25s ease-in-out;
+}
+
+.oml-btn {
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(112.44deg, #ff5858 2.09%, #c058ff 75.22%);
+  background-size: 165%;
+  height: var(--btn-height);
+}
+
+.oml-bg:hover {
+  background: linear-gradient(0.351turn, #ff5858 23.71%, #c058ff 78.8%);
+  background-size: 165%;
+  animation-name: bg-anim;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+.flex-both-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes bg-anim {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.text-gradient {
+  background-image: linear-gradient(0.351turn, #ff5858 23.71%, #c058ff 78.8%);
+  background-color: #ff5858;
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

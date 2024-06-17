@@ -1,0 +1,42 @@
+{
+  "name": "ooohmylink",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^5.1.5",
+    "@headlessui/react": "0.0.0-insiders.2092049",
+    "@nextui-org/modal": "^2.0.36",
+    "@react-spring/web": "^9.7.3",
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/ssr": "^0.3.0",
+    "@supabase/supabase-js": "^2.43.4",
+    "@tanstack/react-query": "^5.45.0",
+    "classnames": "^2.5.1",
+    "email-validator": "^2.0.4",
+    "lucide-react": "^0.395.0",
+    "next": "14.2.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-merge-refs": "^2.1.1",
+    "react-social-icons": "^6.16.0",
+    "sonner": "^1.5.0",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
+}
