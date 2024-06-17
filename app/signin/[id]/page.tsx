@@ -54,7 +54,7 @@ export default async function SignIn({
       <div className="px-8 text-center text-xs text-[var(--grey-color)] mt-5">
         {viewProp === 'password_signin' ? (
           <>
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <a href='/signin/signup' className="cursor-pointer underline text-[var(--blue-color)]">
               Sign up
             </a>
