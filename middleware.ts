@@ -22,7 +22,7 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const isAuthorized = user && dbUser
 
-  // const protectedPaths = ['/dashboard', '/setup-your-page', '/account-settings']
+  const protectedPaths = ['/setup-your-page', '/account-settings', '/dashboard']
 
   // if (
   //   !isAuthorized &&
@@ -32,23 +32,43 @@ export async function middleware(request: NextRequest) {
   //   return NextResponse.next()
   // }
 
-  if (!isAuthorized && !pathname.startsWith('/signin')) {
+  if (
+    !isAuthorized &&
+    (pathname.startsWith('/dashboard') || protectedPaths.includes(pathname)) &&
+    !pathname.startsWith('/signin')
+  ) {
     return NextResponse.redirect(
       new URL('/signin/password_signin', request.url)
     )
   }
 
-  if (isAuthorized && dbUser.stepped && pathname === '/setup-your-page') {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
-  }
+  // if (
+  //   !isAuthorized &&
+  //   protectedPaths.includes(pathname) &&
+  //   !pathname.startsWith('/signin')
+  // ) {
+  //   return NextResponse.redirect(
+  //     new URL('/signin/password_signin', request.url)
+  //   )
+  // }
 
-  if (isAuthorized && !dbUser.stepped && pathname !== '/setup-your-page') {
-    return NextResponse.redirect(new URL('/setup-your-page', request.url))
-  }
+  // if (!isAuthorized && !pathname.startsWith('/signin')) {
+  //   return NextResponse.redirect(
+  //     new URL('/signin/password_signin', request.url)
+  //   )
+  // }
 
-  if (isAuthorized && pathname.startsWith('/signin')) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
-  }
+  // if (isAuthorized && dbUser.stepped && pathname === '/setup-your-page') {
+  //   return NextResponse.redirect(new URL('/dashboard', request.url))
+  // }
+
+  // if (isAuthorized && !dbUser.stepped && pathname !== '/setup-your-page') {
+  //   return NextResponse.redirect(new URL('/setup-your-page', request.url))
+  // }
+
+  // if (isAuthorized && pathname.startsWith('/signin')) {
+  //   return NextResponse.redirect(new URL('/dashboard', request.url))
+  // }
 
   response = NextResponse.next()
 

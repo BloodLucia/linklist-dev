@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 export default async function Page() {
   const supabase = createClient()
   const dbUser = await getDbUser(supabase)
-  if (!dbUser) {
-    return redirect('/signin')
-  }
+  // if (!dbUser) {
+  //   return redirect('/signin')
+  // }
   return (
     <>
       {/* <div className="mb-6 max-w-full max-sm:pt-8 sm:pt-24">
@@ -27,7 +27,7 @@ export default async function Page() {
           🎉
         </div>
       </div> */}
-      <SetupYourPage user={dbUser} />
+      <SetupYourPage user={dbUser!} />
     </>
   )
 }
