@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 type Props = {
@@ -11,6 +12,7 @@ export const NewModal: React.FC<React.PropsWithChildren<Props>> = ({
   onClose,
   children,
 }) => {
+  const ref = useRef<Element | null>(null)
   return (
     isOpen &&
     createPortal(

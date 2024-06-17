@@ -1,7 +1,7 @@
 import { Tables } from '@/db_types'
 import Image from 'next/image'
 
-export const PageList: React.FC<{ pageList: Tables<'profiles'>[] }> = ({
+export const PageList: React.FC<{ pageList: Tables<'profiles'>[] | null }> = ({
   pageList,
 }) => {
   return (

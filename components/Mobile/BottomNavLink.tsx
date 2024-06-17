@@ -12,8 +12,9 @@ export const BottomNavLink: React.FC<
     <a
       href={to}
       className={cn(
-        'text-[var(--dark-color)] text-base text-center box-border border-b-transparent border-b-2 h-[64px] inline-flex justify-center items-center',
-        isActive && 'text-[var(--primary-color)] border-b-2 border-b-[var(--primary-colo)] bg-slate-100/50'
+        'text-[var(--dark-color)] text-base text-center box-border border-t-transparent border-t-2 h-[64px] inline-flex justify-center items-center',
+        isActive &&
+          'text-[var(--primary-color)] border-t-2 border-t-[var(--primary-colo)] '
       )}
     >
       {children}

@@ -1,16 +1,13 @@
 import { PageList } from '@/components/PageList/PageList'
 import { createClient } from '@/utils/supabase/server'
-import { redirect } from 'next/navigation'
+import { User } from '@supabase/supabase-js'
 
 export default async function Page() {
   const supabase = createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) {
-    return redirect('/signin')
+  const { user }: { user: User } = (await supabase.auth.getUser()).data as {
+    user: User
   }
-  const { data: pages } = await supabase
+  const { data} = await supabase
     .from('profiles')
     .select('*')
     .eq('user_id', user.id)
@@ -23,7 +20,7 @@ export default async function Page() {
         <div className="text-base font-semibold mb-4 text-[var(--dark-color)]">
           My Pages
         </div>
-        <PageList pageList={pages!} />
+        <PageList pageList={data} />
       </div>
       <div className="p-8 rounded shadow-sm bg-white w-full mt-8">
         <div className="text-base font-semibold mb-4 text-[var(--dark-color)]">

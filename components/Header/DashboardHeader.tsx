@@ -1,36 +1,35 @@
 'use client'
 
+import { useLoaing } from '@/hooks/use-loading'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { signOut } from '@/utils/supabase/auth-helpers/server'
 import { usePathname } from 'next/navigation'
-import Button from '../Button'
-import { getURL } from '@/utils/helpers/helpers'
 
 export const DashboardHeader: React.FC<{ username?: string }> = ({
   username,
 }) => {
-
-  const getProfileUrl = () => {
-    const siteURL = getURL()
-    if (siteURL.startsWith("http://")) {
-      return `${siteURL.replace("http://", "")}/${username}`
-    } else if (siteURL.startsWith("https://")) {
-      return `${siteURL.replace("https://", "")}/${username}`
-    }
+  const { visible: isLoading, setVisible: setIsLoading } = useLoaing()
+  const handleSubmit = async (e: React.FocusEvent<HTMLFormElement>) => {
+    setIsLoading(true)
+    await handleRequest(e, signOut)
+    setIsLoading(false)
   }
-  
-
   return (
-    <header className="box-border w-full h-[60px] fixed top-0 left-0 z-10 border-b border-b-[var(--btngrey-color)] bg-white">
-      <div className="max-w-6xl h-full mx-auto max-md:px-6 flex justify-between items-center">
-        <a href="/" className="text-xl font-bold font-sans">
-          OH MY LINK
+    <header className="h-[60px] w-full bg-white border-b border-b-[var(--btngrey-color)] fixed top-0 left-0 right-0 box-border">
+      <div className="max-w-6xl flex justify-between items-center mx-auto h-full max-md:w-full max-md:px-6">
+        <a href="/" className="font-semibold text-xl" aria-label="Logo">
+          Oh My Link
         </a>
-        <div className='flex items-center gap-x-4'>
-          <a className='text-sm max-md:hidden  underline text-[var(--blue-color)]' href={getProfileUrl()} target="_blank">{getProfileUrl()}</a>
-          <form onSubmit={(e) => handleRequest(e, signOut)}>
+        <div className="flex gap-x-3">
+          <form onSubmit={handleSubmit}>
             <input type="hidden" name="pathname" value={usePathname()} />
-            <Button level="danger">Sign Out</Button>
+            <button
+              disabled={isLoading}
+              type="submit"
+              className="hover:bg-[var(--danger-dark-color)] px-4 h-[40px] rounded bg-[var(--danger-color)] flex justify-center items-center text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {isLoading ? 'Loading...' : 'Sign Out'}
+            </button>
           </form>
         </div>
       </div>
