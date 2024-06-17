@@ -9,22 +9,25 @@ export const DashboardLayout = async ({
 }: {
   children: React.ReactNode
 }) => {
-  const supabase = createClient()
-  const { user }: { user: User } = (await supabase.auth.getUser()).data as {
-    user: User
-  }
-  const dbUser: Tables<'users'> = (await getDbUser(supabase)) as Tables<'users'>
-  const { data, error } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('user_id', user.id)
-    .maybeSingle()
+  // const supabase = createClient()
+  // const { user }: { user: User } = (await supabase.auth.getUser()).data as {
+  //   user: User
+  // }
+  // const dbUser: Tables<'users'> = (await getDbUser(supabase)) as Tables<'users'>
+  // if (!dbUser) {
+    
+  // }
+  // const { data, error } = await supabase
+  //   .from('profiles')
+  //   .select('*')
+  //   .eq('user_id', user.id)
+  //   .maybeSingle()
 
-  const isLoading = !data && !dbUser && error
+  // const isLoading = !data && !dbUser && error
 
-  if (isLoading) {
-    return <div>loading...</div>
-  }
+  // if (isLoading) {
+  //   return <div>loading...</div>
+  // }
 
   return (
     <div className="min-h-screen bg-[#f9f9f9] overflow-x-hidden">

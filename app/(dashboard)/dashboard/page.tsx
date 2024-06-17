@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation'
+import { redirectToPath } from '@/utils/supabase/auth-helpers/server'
 
-export default function Page() {
-  return redirect('/dashboard/links')
+export default async function Page() {
+  return await redirectToPath('/dashboard/links')
 }
