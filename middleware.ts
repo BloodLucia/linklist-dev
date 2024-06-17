@@ -21,24 +21,35 @@ export async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname
   const isAuthorized = user && dbUser
-
-  const protectedPaths = ['/setup-your-page', '/account-settings']
+  const protectedPaths = [
+    '/setup-your-page',
+    '/account-settings',
+    '/dashboard',
+    '/dashboard/links',
+    '/dashboard/design',
+    '/dashboard/posts',
+    '/dashboard/settings',
+  ]
 
   if (
     !isAuthorized &&
-    pathname.startsWith('/dashboard') &&
-    !pathname.startsWith('/signin')
+    !pathname.startsWith('/signin') &&
+    protectedPaths.includes(pathname)
   ) {
     return NextResponse.redirect(
       new URL('/signin/password_signin', request.url)
     )
   }
 
-  if (!isAuthorized && protectedPaths.includes(pathname) && !pathname.startsWith("/signin")) {
+  if (isAuthorized && !dbUser.stepped && pathname !== '/setup-your-page') {
     return NextResponse.redirect(
-      new URL('/signin/password_signin', request.url)
+      new URL('/setup-your-page', request.url)
     )
   }
+
+  // if (isAuthorized && pathname === '/dashboard') {
+  //   return NextResponse.redirect(new URL('/dashboard/links', request.url))
+  // }
 
   response = NextResponse.next()
 
