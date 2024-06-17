@@ -2,13 +2,12 @@
 
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import {
-  signInWithPassword,
   signInWithUsernameAndPassword,
 } from '@/utils/supabase/auth-helpers/server'
-import { Link2, LoaderCircle } from 'lucide-react'
+import { LoaderCircle } from 'lucide-react'
 import { useState } from 'react'
-import Button from '../Button'
 import { useRouter } from 'next/navigation'
+import { Input } from '../Input/Input'
 
 export const PasswordSignIn = () => {
   const router = useRouter()
@@ -27,21 +26,19 @@ export const PasswordSignIn = () => {
       <h2 className="mb-4 font-semibold text-base text-[var(dark-color)] max-md:text-xl max-md:text-center">
         SIGN IN
       </h2>
-      <input
+      <Input
         type="text"
         name="username"
         placeholder="Username"
-        required
         autoComplete="username"
-        className="bl-input"
+        required
       />
-      <input
+      <Input
         type="password"
         name="password"
         placeholder="Password"
-        required
         autoComplete="current-password"
-        className="bl-input"
+        required
       />
       <button
         type="submit"
