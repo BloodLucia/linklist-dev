@@ -83,18 +83,15 @@ export const updateSession = async (request: NextRequest) => {
       return NextResponse.redirect(new URL('/setup-your-page', request.url))
     }
 
-    // if (
-    //   !isAuthorized &&
-    //   dbUser.stepped &&
-    //   pathname.startsWith('/dashboard') &&
-    //   !pathname.startsWith('/signin')
-    // ) {
-    //   return NextResponse.redirect(new URL('/signin/password_signin', request.url))
-    // }
-
-    if (!isAuthorized) {
-      console.log("heloo~~~~~");
-      
+    if (
+      !isAuthorized &&
+      pathname.startsWith('/dashboard') &&
+      !pathname.startsWith('/signin')
+    ) {
+      console.log('hello~~~')
+      return NextResponse.redirect(
+        new URL('/signin/password_signin', request.url)
+      )
     }
 
     return response
