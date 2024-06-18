@@ -1,5 +1,5 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export const createClient = (request: NextRequest) => {
   // Create an unmodified response
@@ -68,31 +68,7 @@ export const updateSession = async (request: NextRequest) => {
 
     // This will refresh session if expired - required for Server Components
     // https://supabase.com/docs/guides/auth/server-side/nextjs
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-    const { data: dbUser } = await supabase
-      .from('users')
-      .select('*')
-      .eq('user_id', user?.id)
-      .maybeSingle()
-    const isAuthorized = user && dbUser
-    const pathname = request.nextUrl.pathname
-
-    if (isAuthorized && !dbUser.stepped && pathname !== '/setup-your-page') {
-      return NextResponse.redirect(new URL('/setup-your-page', request.url))
-    }
-
-    if (
-      !isAuthorized &&
-      pathname.startsWith('/dashboard') &&
-      !pathname.startsWith('/signin')
-    ) {
-      console.log('hello~~~')
-      return NextResponse.redirect(
-        new URL('/signin/password_signin', request.url)
-      )
-    }
+    await supabase.auth.getUser()
 
     return response
   } catch (e) {
