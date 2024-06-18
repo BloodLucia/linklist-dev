@@ -1,0 +1,23 @@
+.root {
+  @apply grid grid-flow-row grid-rows-1 gap-y-4 mt-6;
+}
+
+.item {
+  @apply w-full rounded bg-white shadow-sm px-6 py-5 cursor-pointer flex justify-between items-center text-sm;
+}
+
+.item:hover {
+
+}
+
+.title {
+  @apply text-sm font-bold mb-4 tracking-[1px] text-[var(--grey-color)];
+}
+
+.name {
+  @apply font-bold text-[var(--dark-color)];
+}
+
+.url {
+  @apply text-[var(--dark-color)] font-normal overflow-hidden text-ellipsis break-words cursor-pointer;
+}

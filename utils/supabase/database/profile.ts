@@ -173,6 +173,28 @@ export const updateProfile = async (formData: FormData) => {
   }
 }
 
+export const updateLink = async (formData: FormData) => {
+  const name = String(formData.get('name')).trim()
+  const url = String(formData.get('url')).trim()
+  const id = String(formData.get('id')).trim()
+  const pathname = String(formData.get('pathname')).trim()
+  const supabase = createClient()
+  let redirectUrl: string
+
+  const { error } = await supabase
+    .from('links')
+    .update({ name, url })
+    .eq('id', id)
+
+  if (error) {
+    redirectUrl = getToastRedirect(pathname, 'error', error.message)
+  }
+
+  redirectUrl = getToastRedirect(pathname, 'status', 'You are updated a link.')
+
+  return redirectUrl
+}
+
 export const addLink = async (formData: FormData) => {
   const name = String(formData.get('name')).trim()
   const url = String(formData.get('url')).trim()

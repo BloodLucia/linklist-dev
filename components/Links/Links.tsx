@@ -1,41 +1,95 @@
 'use client'
 
 import { Tables } from '@/db_types'
-import { useState } from 'react'
+import s from './Links.module.css'
+import { useRef, useState } from 'react'
+import { Modal } from '../Modal/Modal'
+import { Input } from '../Input/Input'
+import { Loader } from '../Loader/Loader'
+import { usePathname, useRouter } from 'next/navigation'
+import { handleRequest } from '@/utils/supabase/auth-helpers/client'
+import { updateLink } from '@/utils/supabase/database/profile'
 
-export const Links: React.FC<{ links?: Tables<'links'>[] | null }> = ({
-  links = [],
+export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
+  links,
 }) => {
-  // const formRef = useRef<HTMLFormElement>(null)
-  // const [isLoading, setIsLoading] = useState(false)
-  const [addLinkModalVisible, setAddLinkModalVisible] = useState(false)
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   setIsLoading(true)
-  //   await handleRequest(e, addLink)
-  //   setIsLoading(false)
-  //   setAddLinkModalVisible(false)
-  //   formRef.current?.reset()
-  // }
-  const onModalClose = () => {
-    setAddLinkModalVisible(false)
+  const router = useRouter()
+  const formRef = useRef<HTMLFormElement | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [selectedLink, setSelectedLink] = useState<Tables<'links'>>()
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const handleLinkClick = (link: Tables<'links'>) => {
+    setSelectedLink(link)
+    setIsOpenModal(true)
+  }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true)
+    await handleRequest(e, updateLink, router)
+    setIsLoading(false)
+    setIsOpenModal(false)
+    formRef.current?.reset()
   }
   return (
     <>
-      <div className="max-md:px-6">
-        <div className="grid grid-flow-col max-md:grid-flow-row gap-y-3 auto-cols-auto gap-x-3 mt-8">
-          <button
-            className="oml-btn oml-bg rounded"
-            onClick={() => setAddLinkModalVisible(true)}
-          >
-            ADD LINK
-          </button>
-          <button className="oml-btn oml-bg rounded">ADD EMBED</button>
+      <div className="mt-8">
+        <div className={s['title']}>LINKS</div>
+        <div className={s['root']}>
+          {links &&
+            links.map((link) => {
+              return (
+                <div
+                  key={link.id}
+                  className={s['item']}
+                  onClick={() => handleLinkClick(link)}
+                >
+                  <div className="grid grid-rows-2">
+                    <div className={s['name']}>{link.name}</div>
+                    <div className={s['url']}>{link.url}</div>
+                  </div>
+                </div>
+              )
+            })}
         </div>
       </div>
-      {/* <AddLink
-        modalVisible={addLinkModalVisible}
-        onModalClose={onModalClose}
-      /> */}
+      <Modal
+        title="Edit Link"
+        visible={isOpenModal}
+        onClose={() => setIsOpenModal(false)}
+      >
+        <form
+          onSubmit={handleSubmit}
+          ref={formRef}
+          className="flex flex-col gap-y-4 items-stretch"
+        >
+          <Input
+            type="text"
+            name="name"
+            placeholder="Title"
+            defaultValue={selectedLink?.name}
+            required
+            autoCapitalize="off"
+            autoComplete="off"
+          />
+          <Input
+            type="url"
+            name="url"
+            placeholder="URL"
+            defaultValue={selectedLink?.url}
+            required
+            autoCapitalize="off"
+            autoComplete="off"
+          />
+          <Input type="hidden" name="pathname" defaultValue={usePathname()} />
+          <Input type="hidden" name="id" defaultValue={selectedLink?.id} />
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="disabled:opacity-50 disabled:cursor-not-allowed oml-bg oml-btn rounded flex justify-center items-center text-white"
+          >
+            {isLoading ? <Loader color="#ffffff" /> : 'SAVE'}
+          </button>
+        </form>
+      </Modal>
     </>
   )
 }
