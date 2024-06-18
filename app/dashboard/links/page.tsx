@@ -27,7 +27,10 @@ export default async function Page() {
           {links &&
             links.map((link) => {
               return (
-                <div className="w-full rounded bg-white shadow-sm px-6 py-5 relative cursor-pointer flex justify-between items-center text-sm">
+                <div
+                  key={link.id}
+                  className="w-full rounded bg-white shadow-sm px-6 py-5 relative cursor-pointer flex justify-between items-center text-sm"
+                >
                   <div className="grid grid-rows-2">
                     <div className="font-bold text-[var(--dark-color)]">
                       {link.name}

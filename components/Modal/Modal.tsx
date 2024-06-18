@@ -28,7 +28,7 @@ export const Modal: React.FC<React.PropsWithChildren<Props>> = (props) => {
         className="w-full h-full fixed top-0 left-0 bg-black/80 z-50"
         onClick={onMaskClose ? onClose : undefined}
       >
-        <div className="fixed bg-white rounded-lg overflow-hidden md:w-[450px] z-[100] md:top-[50%] md:left-[50%] md:-translate-x-[50%] md:-translate-y-[50%] shadow-sm max-md:w-full max-md:bottom-0 max-md:rounded-b-none">
+        <div className="fixed bg-white rounded-lg overflow-hidden md:w-[450px] z-[100] md:top-[50%] md:left-[50%] md:-translate-x-[50%] md:-translate-y-[50%] shadow-sm max-md:w-full max-md:bottom-[env(safe-area-inset-bottom)] max-md:rounded-b-none">
           <header className="px-8 py-4 border-b flex justify-between items-center">
             <div className="text-base font-semibold">{title ?? 'Title'}</div>
             <X onClick={onClose} cursor="pointer" color="var(--grey-color)" />
