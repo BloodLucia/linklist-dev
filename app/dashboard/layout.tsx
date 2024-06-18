@@ -5,6 +5,7 @@ import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import type { Viewport } from 'next'
+import { TopNav } from '@/components/Mobile/TopNav'
 
 export const viewport: Viewport = {
   userScalable: false
@@ -36,46 +37,15 @@ export default async function Layout({
   return (
     <div className="min-h-screen bg-[#f9f9f9]">
       <DashboardHeader />
-      <div className="md:hidden fixed top-[60px] left-0 w-full max-md:bg-white border-b grid grid-cols-5 items-stretch text-sm box-border h-[50px] text-center">
-        <Link
-          className="inline-flex justify-center items-center border-b-2 border-b-[var(--primary-color)] text-[var(--primary-color)] box-border"
-          href="/dashboard/links"
-        >
-          Links
-        </Link>
-        <Link
-          className="inline-flex justify-center items-center border-b-2 border-b-transparent box-border"
-          href="/dashboard/design"
-        >
-          Design
-        </Link>
-        <Link
-          className="inline-flex justify-center items-center border-b-2 border-b-transparent box-border"
-          href="/dashboard/posts"
-        >
-          Posts
-        </Link>
-        <Link
-          className="inline-flex justify-center items-center border-b-2 border-b-transparent box-border"
-          href="/dashboard/stats"
-        >
-          Stats
-        </Link>
-        <Link
-          className="inline-flex justify-center items-center border-b-2 border-b-transparent box-border"
-          href="/dashboard/settings"
-        >
-          Settings
-        </Link>
-      </div>
+      <TopNav />
       <main className="max-md:pt-[110px] pt-[60px] overflow-y-auto">
         <div className="grid grid-cols-2 max-md:grid-cols-1">
           <aside className="max-md:hidden bg-white flex justify-center items-center">
             <ProfilePreview username={dbUser?.username} />
           </aside>
-          <div className="px-10 py-12 max-md:w-full max-md:px-6 max-md:py-8">
+          <div className="px-10 py-12 max-md:w-full max-md:px-6 max-md:py-10">
             <DashboardTabs />
-            <div className="py-8">{children}</div>
+            {children}
           </div>
         </div>
       </main>
