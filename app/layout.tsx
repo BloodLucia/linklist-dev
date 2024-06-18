@@ -4,8 +4,8 @@ import { Toaster } from '@/components/Toaster/Toaster'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Oh My Link',
-  description: 'Oh My Link',
+  title: 'Link List',
+  description: 'Link List',
 }
 export const viewport: Viewport = {
   userScalable: false

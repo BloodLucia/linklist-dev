@@ -20,7 +20,7 @@ export const DashboardHeader: React.FC<{ username?: string }> = ({
     <header className="h-[60px] w-full md:bg-white/85 max-md:bg-white fixed top-0 left-0 right-0 box-border md:border-b z-10">
       <div className="max-w-6xl flex justify-between items-center mx-auto h-full max-md:w-full max-md:px-6 md:backdrop-blur-2xl">
         <a href="/" className="font-semibold text-xl" aria-label="Logo">
-          Oh My Link
+          LinkList
         </a>
         <div className="flex gap-x-3">
           <form onSubmit={handleSubmit} className="max-md:hidden">
