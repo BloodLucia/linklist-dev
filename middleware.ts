@@ -2,33 +2,34 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { createClient, updateSession } from '@/utils/supabase/middleware'
 
 export async function middleware(request: NextRequest) {
-  const { supabase, response } = createClient(request)
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  const { data: dbUser } = await supabase
-    .from('users')
-    .select('*')
-    .eq('user_id', user?.id)
-    .maybeSingle()
-  const isAuthorized = user && dbUser
-  const pathname = request.nextUrl.pathname
+  // const { supabase, response } = createClient(request)
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser()
+  // const { data: dbUser } = await supabase
+  //   .from('users')
+  //   .select('*')
+  //   .eq('user_id', user?.id)
+  //   .maybeSingle()
+  // const isAuthorized = user && dbUser
+  // const pathname = request.nextUrl.pathname
 
-  if (isAuthorized && !dbUser.stepped && pathname !== '/setup-your-page') {
-    return NextResponse.redirect(new URL('/setup-your-page', request.url))
-  }
+  // if (isAuthorized && !dbUser.stepped && pathname !== '/setup-your-page') {
+  //   return NextResponse.redirect(new URL('/setup-your-page', request.url))
+  // }
 
-  if (
-    !isAuthorized &&
-    pathname.startsWith('/dashboard') &&
-    !pathname.startsWith('/signin')
-  ) {
-    console.log('hello~~~')
-    return NextResponse.redirect(
-      new URL('/signin/password_signin', request.url)
-    )
-  }
-  return await updateSession(request)
+  // if (
+  //   !isAuthorized &&
+  //   pathname.startsWith('/dashboard') &&
+  //   !pathname.startsWith('/signin')
+  // ) {
+  //   console.log('hello~~~')
+  //   return NextResponse.redirect(
+  //     new URL('/signin/password_signin', request.url)
+  //   )
+  // }
+  return NextResponse.redirect('/home')
+  // return await updateSession(request)
 }
 
 export const config = {
@@ -42,5 +43,6 @@ export const config = {
      * Feel free to modify this pattern to include more paths.
      */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/dashboard/(.*)',
   ],
 }
