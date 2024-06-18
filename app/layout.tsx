@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className="h-full antialiased text-sm font-sans">
+      <body className="h-full antialiased text-base font-sans text-[var(--dark-color)]">
         {children}
         <Suspense>
           <Toaster />
