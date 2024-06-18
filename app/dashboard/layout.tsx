@@ -4,7 +4,11 @@ import { ProfilePreview } from '@/components/ProfilePreview/ProfilePreview'
 import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import type { Viewport } from 'next'
 
+export const viewport: Viewport = {
+  userScalable: false
+}
 export default async function Layout({
   children,
 }: Readonly<{

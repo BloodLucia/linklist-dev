@@ -1,6 +1,8 @@
-'use client'
-import { Link } from 'lucide-react'
+import type { Viewport } from 'next'
 
+export const viewport: Viewport = {
+  userScalable: false,
+}
 export default function RootLayout({
   children,
 }: Readonly<{
