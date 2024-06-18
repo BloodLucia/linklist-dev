@@ -14,13 +14,13 @@ export default async function Layout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const supabase = createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) {
-    return redirect('/signin')
-  }
+  // const supabase = createClient()
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser()
+  // if (!user) {
+  //   return redirect('/signin')
+  // }
 
   return (
     <div className="min-h-screen bg-[#f9f9f9]">

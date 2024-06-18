@@ -83,6 +83,20 @@ export const updateSession = async (request: NextRequest) => {
       return NextResponse.redirect(new URL('/setup-your-page', request.url))
     }
 
+    // if (
+    //   !isAuthorized &&
+    //   dbUser.stepped &&
+    //   pathname.startsWith('/dashboard') &&
+    //   !pathname.startsWith('/signin')
+    // ) {
+    //   return NextResponse.redirect(new URL('/signin/password_signin', request.url))
+    // }
+
+    if (!isAuthorized) {
+      console.log("heloo~~~~~");
+      
+    }
+
     return response
   } catch (e) {
     // If you are here, a Supabase client could not be created!

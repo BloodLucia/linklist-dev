@@ -1,16 +1,16 @@
 'use client'
 
-import { useLoaing } from '@/hooks/use-loading'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { signOut } from '@/utils/supabase/auth-helpers/server'
 import { usePathname } from 'next/navigation'
 import { Loader } from '../Loader/Loader'
 import { Menu } from 'lucide-react'
+import { useState } from 'react'
 
 export const DashboardHeader: React.FC<{ username?: string }> = ({
   username,
 }) => {
-  const { visible: isLoading, setVisible: setIsLoading } = useLoaing()
+  const [isLoading, setIsLoading] = useState(false)
   const handleSubmit = async (e: React.FocusEvent<HTMLFormElement>) => {
     setIsLoading(true)
     await handleRequest(e, signOut)
