@@ -4,11 +4,11 @@ import { Toaster } from '@/components/Toaster/Toaster'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Link List',
-  description: 'Link List',
+  title: 'LinkList',
+  description: 'LinkList · Launch your site in seconds',
 }
 export const viewport: Viewport = {
-  userScalable: false
+  userScalable: false,
 }
 export default function RootLayout({
   children,

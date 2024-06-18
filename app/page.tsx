@@ -1,3 +1,7 @@
 export default function Home() {
-  return <div>LinkList</div>
+  return (
+    <div className="xl:w-[1140px] mx-auto">
+
+    </div>
+  )
 }
