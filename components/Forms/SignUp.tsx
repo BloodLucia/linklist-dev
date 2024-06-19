@@ -5,7 +5,9 @@ import { signUp } from '@/utils/supabase/auth-helpers/server'
 import { Eye, LoaderCircle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { Input } from '../Input/Input'
+import { PasswordInput } from '../Inputs/PasswordInput'
+import { UrlInput } from '../Inputs/UrlInout'
+import { Input } from '../Inputs/Input'
 
 export const SignUp: React.FC = () => {
   const router = useRouter()
@@ -26,34 +28,17 @@ export const SignUp: React.FC = () => {
       </h2>
       <Input
         type="email"
-        name="email"
-        placeholder="Email"
         required
+        name="email"
+        placeholder="邮箱"
         autoComplete="email"
       />
-      <Input
-        name="username"
-        type="text"
-        required
-        placeholder="username"
-        maxLength={20}
-        iconSlot={
-          <div className="absolute text-sm text-[var(--dark-color)] top-[25%] left-4 font-normal">
-            oml.lol/
-          </div>
-        }
-      />
-      <Input
-        type="password"
-        name="password"
-        placeholder="Password"
-        required
-        iconSlot={<Eye width={20} height={20} className=' cursor-pointer absolute right-4 top-[50%] -translate-y-[50%]' />}
-      />
+      <PasswordInput />
+      <UrlInput />
       <button
         type="submit"
         disabled={isLoading}
-        className="disabled:cursor-not-allowed oml-bg oml-btn text-white rounded mt-4 flex justify-center items-center"
+        className="disabled:cursor-not-allowed bg-[var(--pr-color)] h-[40px] font-semibold text-white rounded mt-4 flex justify-center items-center"
       >
         {isLoading ? <LoaderCircle className="animate-spin" /> : 'SIGN UP'}
       </button>

@@ -83,7 +83,7 @@ export default async function SignIn({
             Don&apos;t have an account?{' '}
             <a
               href="/signin/signup"
-              className="cursor-pointer underline text-[var(--blue-color)]"
+              className="cursor-pointer underline text-[#B996F7]"
             >
               Sign up
             </a>
@@ -93,7 +93,7 @@ export default async function SignIn({
             Already have an account?{' '}
             <a
               href="/signin/password_signin"
-              className="cursor-pointer underline text-[var(--blue-color)]"
+              className="cursor-pointer underline text-[#B996F7]"
             >
               Sign in
             </a>

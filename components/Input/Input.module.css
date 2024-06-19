@@ -8,7 +8,6 @@
 
 .wrapper:focus-within {
   @apply bg-gradient-to-r from-[#c058ff] to-[var(--danger-color)];
-  /* background: linear-gradient(#c058ff, var(--danger-color)); */
 }
 
 .root:focus {

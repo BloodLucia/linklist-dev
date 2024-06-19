@@ -16,6 +16,10 @@
   --btngrey-color: #f3f3f4;
 
   --btn-height: 40px;
+
+  --text-dark: #3d4043;
+  --pr-color: #B996F7;
+  /* --input-bg: 0d0c22 */
 }
 
 .bl-input {
@@ -130,3 +134,6 @@
   );
 }
 
+.ll-btn-bg {
+  background-image: linear-gradient(63deg, rgba(255, 250, 192, 1) 0, rgba(192, 255, 248, 1) 100%);
+}
