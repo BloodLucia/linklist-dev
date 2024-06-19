@@ -18,10 +18,12 @@ export const SiteContent = () => {
             <a href="/signin/password_signin" className='ll-btn ll-btn-bg2 rounded-full'>登录</a>
           </div>
         </section>
-        <section className="w-full flex items-start max-md:pb-8">
+        <section className="w-full flex items-start justify-center max-md:pb-8">
           <Image
             src="/linklist-small.png"
             priority
+            decoding="auto"
+            loading="eager"
             width={525}
             height={482}
             alt="LinkList"

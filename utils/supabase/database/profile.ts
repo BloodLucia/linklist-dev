@@ -254,7 +254,7 @@ export const getLinksForUser = async (supabase: SupabaseClient<Database>) => {
   } = await supabase.auth.getUser()
   const dbProfile = await getCurrentUserProfile(supabase)
   if (user && dbProfile) {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('links')
       .select('*')
       .eq('user_id', user.id)

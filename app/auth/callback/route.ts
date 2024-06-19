@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     if (error) {
       return NextResponse.redirect(
         getToastRedirect(
-          `${requestUrl.origin}/signin`,
+          `${requestUrl.origin}/signin/password_signin`,
           'error',
           "Sorry, we weren't able to log you in. Please try again."
         )

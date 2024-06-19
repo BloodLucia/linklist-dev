@@ -10,16 +10,13 @@ import { createClient } from '@/utils/supabase/server'
 
 export default async function Page() {
   const supabase = createClient()
-  const [links, headers] = await Promise.all([
-    getLinksForUser(supabase),
-    getHeadersForUser(supabase),
-  ])
+  const [links] = await Promise.all([getLinksForUser(supabase)])
 
   return (
     <>
       <AddLink />
       <AddHeader />
-      <ProfileHeaders headers={headers} />
+      {/* <ProfileHeaders headers={headers} /> */}
       <Links links={links} />
     </>
   )

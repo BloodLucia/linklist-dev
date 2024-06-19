@@ -21,16 +21,23 @@ export default async function Layout({
   } = await supabase.auth.getUser()
   if (!user) {
     return redirect('/signin/password_signin')
-  } else {
+  }
+  if (user) {
     const dbUser = await getDbUser(supabase)
-    if (!dbUser) {
-      return redirect('/signin/password_signin')
-    } else if (!dbUser.stepped) {
+    if (dbUser && !dbUser.stepped) {
       return redirect('/setup-your-page')
-    } else {
-      return redirect('/dashboard/links')
     }
   }
+  // else {
+  //   const dbUser = await getDbUser(supabase)
+  //   if (!dbUser) {
+  //     return redirect('/signin/password_signin')
+  //   } else if (!dbUser.stepped) {
+  //     return redirect('/setup-your-page')
+  //   } else {
+  //     return redirect('/dashboard/links')
+  //   }
+  // }
 
   return (
     <div className="min-h-screen bg-[#f9f9f9]">
