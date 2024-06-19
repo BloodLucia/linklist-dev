@@ -7,6 +7,7 @@ import { useRef, useState } from 'react'
 import { addLink } from '@/utils/supabase/database/profile'
 import { Loader } from '../Loader/Loader'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
+import { Button } from '../Buttons/Button'
 
 export const AddLink: React.FC = () => {
   const router = useRouter()
@@ -53,13 +54,9 @@ export const AddLink: React.FC = () => {
             placeholder="URL"
             defaultValue={usePathname()}
           />
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="disabled:opacity-50 disabled:cursor-not-allowed oml-bg oml-btn rounded flex justify-center items-center text-white mt-4"
-          >
-            {isLoading ? <Loader color="#ffffff" /> : 'SAVE'}
-          </button>
+          <Button type="submit" disabled={isLoading}>
+            保存
+          </Button>
         </form>
       </Modal>
     </>

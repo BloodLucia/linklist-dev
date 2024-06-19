@@ -195,6 +195,45 @@ export const updateLink = async (formData: FormData) => {
   return redirectUrl
 }
 
+export const removeLink = async (formData: FormData): Promise<string> => {
+  let redirectUrl: string
+  const supabase = createClient()
+  const id = String(formData.get('linkId')).trim()
+  const pathname = String(formData.get('pathname')).trim()
+  const dbUser = await getDbUser(supabase)
+  const currentProfile = await getCurrentUserProfile(supabase)
+  if (!dbUser || !currentProfile) {
+    redirectUrl = getToastRedirect(
+      '/signin/password_signin',
+      'error',
+      '请先登录再进行操作'
+    )
+  } else {
+    const { data, error } = await supabase
+      .from('links')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', dbUser.user_id)
+      .eq('profile_id', currentProfile.id)
+      .select()
+    if (error) {
+      redirectUrl = getToastRedirect(pathname, 'error', error.message)
+    }
+
+    if (data && data.length > 0) {
+      redirectUrl = getToastRedirect(
+        pathname,
+        'status',
+        `以成功删除${data.length}条数据`
+      )
+    }
+
+    redirectUrl = getToastRedirect(pathname, 'error', '删除失败, 请稍后再试 :(')
+  }
+
+  return redirectUrl
+}
+
 export const addLink = async (formData: FormData) => {
   const name = String(formData.get('name')).trim()
   const url = String(formData.get('url')).trim()

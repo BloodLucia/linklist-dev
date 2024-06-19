@@ -4,11 +4,12 @@ import { Tables } from '@/db_types'
 import s from './Links.module.css'
 import { useRef, useState } from 'react'
 import { Modal } from '../Modal/Modal'
-import { Input } from '../Input/Input'
 import { Loader } from '../Loader/Loader'
 import { usePathname, useRouter } from 'next/navigation'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { updateLink } from '@/utils/supabase/database/profile'
+import { Button } from '../Buttons/Button'
+import { Input } from '../Inputs/Input'
 
 export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   links,
@@ -28,6 +29,10 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
     setIsLoading(false)
     setIsOpenModal(false)
     formRef.current?.reset()
+  }
+  const handleClick = async () => {
+    const formData = new FormData(formRef.current!)
+    setIsLoading(true)
   }
   return (
     <>
@@ -81,13 +86,9 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
           />
           <Input type="hidden" name="pathname" defaultValue={usePathname()} />
           <Input type="hidden" name="id" defaultValue={selectedLink?.id} />
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="disabled:opacity-50 disabled:cursor-not-allowed oml-bg oml-btn rounded flex justify-center items-center text-white"
-          >
-            {isLoading ? <Loader color="#ffffff" /> : 'SAVE'}
-          </button>
+          <Button type="submit" disabled={isLoading}>
+            保存
+          </Button>
         </form>
       </Modal>
     </>
