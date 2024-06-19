@@ -3,7 +3,7 @@
 }
 
 .item {
-  @apply w-full rounded bg-white shadow-sm px-6 py-5 cursor-pointer flex justify-between items-center text-sm;
+  @apply w-full rounded bg-white shadow-md px-6 py-4 cursor-pointer flex justify-between items-center text-sm;
 }
 
 .item:hover {
@@ -11,13 +11,13 @@
 }
 
 .title {
-  @apply text-sm font-bold mb-4 tracking-[1px] text-[var(--grey-color)];
+  @apply text-lg text-textDark font-bold mb-4 tracking-[1px];
 }
 
 .name {
-  @apply font-bold text-[var(--dark-color)];
+  @apply font-bold text-textDark text-lg;
 }
 
 .url {
-  @apply text-[var(--dark-color)] font-normal overflow-hidden text-ellipsis break-words cursor-pointer;
+  @apply text-[var(--grey-color)] font-normal overflow-hidden text-ellipsis break-words cursor-pointer flex items-center gap-x-1 text-xs;
 }

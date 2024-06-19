@@ -1,13 +1,12 @@
 'use client'
 
 import { usePathname, useRouter } from 'next/navigation'
-import { Input } from '../Input/Input'
 import { Modal } from '../Modal/Modal'
 import { useRef, useState } from 'react'
 import { addLink } from '@/utils/supabase/database/profile'
-import { Loader } from '../Loader/Loader'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { Button } from '../Buttons/Button'
+import { Input } from '../Inputs/Input'
 
 export const AddLink: React.FC = () => {
   const router = useRouter()
@@ -29,14 +28,14 @@ export const AddLink: React.FC = () => {
           className="oml-bg oml-btn text-white rounded flex justify-center items-center"
           onClick={() => setIsOpenModal(true)}
         >
-          ADD LINK
+          添加链接
         </button>
         <button className="bg-[--primary-color] text-white rounded flex justify-center items-center font-semibold">
           ADD EMBED
         </button>
       </div>
       <Modal
-        title="Add"
+        title="添加链接"
         visible={isOpenModal}
         onClose={() => setIsOpenModal(false)}
       >
@@ -46,9 +45,9 @@ export const AddLink: React.FC = () => {
           action="POST"
           className="flex flex-col items-stretch gap-y-4"
         >
-          <Input name="name" placeholder="Title" required autoComplete="off" />
+          <Input name="name" placeholder="标题" required autoComplete="off" />
           <Input name="url" placeholder="URL" required autoComplete="off" />
-          <Input
+          <input
             type="hidden"
             name="pathname"
             placeholder="URL"

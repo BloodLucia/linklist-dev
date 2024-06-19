@@ -4,12 +4,12 @@ import { Tables } from '@/db_types'
 import s from './Links.module.css'
 import { useRef, useState } from 'react'
 import { Modal } from '../Modal/Modal'
-import { Loader } from '../Loader/Loader'
 import { usePathname, useRouter } from 'next/navigation'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { updateLink } from '@/utils/supabase/database/profile'
 import { Button } from '../Buttons/Button'
 import { Input } from '../Inputs/Input'
+import { Ellipsis, Link } from 'lucide-react'
 
 export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   links,
@@ -30,31 +30,33 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
     setIsOpenModal(false)
     formRef.current?.reset()
   }
-  const handleClick = async () => {
-    const formData = new FormData(formRef.current!)
-    setIsLoading(true)
-  }
   return (
     <>
       <div className="mt-8">
-        <div className={s['title']}>LINKS</div>
-        <div className={s['root']}>
+        <div className={s['title']}>链接列表</div>
+        <ol className={s['root']}>
           {links &&
             links.map((link) => {
               return (
-                <div
+                <li
                   key={link.id}
                   className={s['item']}
-                  onClick={() => handleLinkClick(link)}
+                  // onClick={() => handleLinkClick(link)}
                 >
                   <div className="grid grid-rows-2">
                     <div className={s['name']}>{link.name}</div>
-                    <div className={s['url']}>{link.url}</div>
+                    <div className={s['url']}>
+                      <Link width={12} height={12} />
+                      {link.url}
+                    </div>
                   </div>
-                </div>
+                  <div>
+                    <Ellipsis width={26} height={26} />
+                  </div>
+                </li>
               )
             })}
-        </div>
+        </ol>
       </div>
       <Modal
         title="Edit Link"

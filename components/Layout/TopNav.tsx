@@ -23,14 +23,14 @@ const TopNavLink: React.FC<React.PropsWithChildren<{ href: string }>> = ({
   )
 }
 
-export const TopNav = () => {
+export const MobileTopNav = () => {
   return (
-    <nav className="md:hidden z-10 border-b-2 border-b-transparent fixed top-[60px] left-0 w-full max-md:bg-white md:bg-white/85 md:backdrop-blur-2xl grid grid-cols-5 items-stretch text-sm box-border h-[50px] text-center">
-      <TopNavLink href="links">Links</TopNavLink>
-      <TopNavLink href="design">Design</TopNavLink>
-      <TopNavLink href="posts">Posts</TopNavLink>
-      <TopNavLink href="stats">Stats</TopNavLink>
-      <TopNavLink href="settings">Settings</TopNavLink>
+    <nav className="md:hidden z-10 fixed top-[60px] left-0 w-full max-md:bg-white md:bg-white/85 md:backdrop-blur-2xl grid grid-flow-col items-stretch text-sm box-border h-[50px] text-center">
+      <TopNavLink href="links">链接</TopNavLink>
+      <TopNavLink href="design">设计</TopNavLink>
+      {/* <TopNavLink href="posts">Posts</TopNavLink> */}
+      {/* <TopNavLink href="stats">Stats</TopNavLink> */}
+      <TopNavLink href="settings">设置</TopNavLink>
     </nav>
   )
 }

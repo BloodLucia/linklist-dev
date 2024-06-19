@@ -15,7 +15,7 @@ export default async function Page() {
   return (
     <>
       <AddLink />
-      <AddHeader />
+      {/* <AddHeader /> */}
       {/* <ProfileHeaders headers={headers} /> */}
       <Links links={links} />
     </>

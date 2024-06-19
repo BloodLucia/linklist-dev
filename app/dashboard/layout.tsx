@@ -1,12 +1,13 @@
+import type { Viewport } from 'next'
 import { DashboardHeader } from '@/components/Header/DashboardHeader'
 import { ProfilePreview } from '@/components/ProfilePreview/ProfilePreview'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
-import { TopNav } from '@/components/Mobile/TopNav'
 import { getDbUser } from '@/utils/supabase/auth-helpers/queries'
 import { Tables } from '@/db_types'
-import type { Viewport } from 'next'
 import { DashboardTabs } from '@/components/Layout/DashboardTabs'
+import { MobileTopNav } from '@/components/Layout/TopNav'
+
 
 export const viewport: Viewport = {
   userScalable: false,
@@ -33,7 +34,7 @@ export default async function Layout({
   return (
     <div className="min-h-screen bg-[#f9f9f9]">
       <DashboardHeader />
-      <TopNav />
+      <MobileTopNav />
       <main className="max-md:pt-[110px] pt-[60px] overflow-y-auto">
         <div className="grid grid-cols-2 max-md:grid-cols-1">
           <aside className="max-md:hidden bg-white flex justify-center items-center">
