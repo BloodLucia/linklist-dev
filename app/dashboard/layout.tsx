@@ -5,6 +5,7 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import type { Viewport } from 'next'
 import { TopNav } from '@/components/Mobile/TopNav'
+import { getDbUser } from '@/utils/supabase/auth-helpers/queries'
 
 export const viewport: Viewport = {
   userScalable: false,
@@ -14,13 +15,22 @@ export default async function Layout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  // const supabase = createClient()
-  // const {
-  //   data: { user },
-  // } = await supabase.auth.getUser()
-  // if (!user) {
-  //   return redirect('/signin')
-  // }
+  const supabase = createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  if (!user) {
+    return redirect('/signin/password_signin')
+  } else {
+    const dbUser = await getDbUser(supabase)
+    if (!dbUser) {
+      return redirect('/signin/password_signin')
+    } else if (!dbUser.stepped) {
+      return redirect('/setup-your-page')
+    } else {
+      return redirect('/dashboard/links')
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#f9f9f9]">
