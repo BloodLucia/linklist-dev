@@ -3,7 +3,7 @@
 }
 
 .input {
-  @apply bg-[rgba(13,12,34,0.05)] placeholder:text-[var(--grey-color)] text-[var(--text-dark)] w-full py-1.5 box-border border-2 border-transparent rounded text-base font-normal px-4 outline-none;
+  @apply bg-[rgba(13,12,34,0.05)] placeholder:text-[var(--grey-color)] text-[var(--text-dark)] w-full box-border border-2 border-transparent rounded text-base font-normal px-2.5 py-2 leading-none outline-none;
 }
 
 .input:focus {

@@ -1,13 +1,14 @@
 import type { Viewport } from 'next'
 import { DashboardHeader } from '@/components/Header/DashboardHeader'
 import { ProfilePreview } from '@/components/ProfilePreview/ProfilePreview'
+import { ProfilePreview as MobileProfilePreview } from '@/components/Mobile/ProfilePreview'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { getDbUser } from '@/utils/supabase/auth-helpers/queries'
 import { Tables } from '@/db_types'
 import { DashboardTabs } from '@/components/Layout/DashboardTabs'
 import { MobileTopNav } from '@/components/Layout/TopNav'
-
+import { FloatButton } from '@/components/Buttons/FloatButton'
 
 export const viewport: Viewport = {
   userScalable: false,
@@ -32,7 +33,7 @@ export default async function Layout({
   }
 
   return (
-    <div className="min-h-screen bg-[#f9f9f9]">
+    <div className="min-h-screen bg-[#f9f9f9] relative">
       <DashboardHeader />
       <MobileTopNav />
       <main className="max-md:pt-[110px] pt-[60px] overflow-y-auto">
@@ -46,6 +47,10 @@ export default async function Layout({
           </div>
         </div>
       </main>
+      {/* <ProfilePreview /> */}
+
+      <MobileProfilePreview user={dbUser} />
+      <FloatButton />
     </div>
   )
 }
