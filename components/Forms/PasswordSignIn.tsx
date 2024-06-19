@@ -7,6 +7,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { PasswordInput } from '../Inputs/PasswordInput'
 import { Input } from '../Inputs/Input'
+import { Brand } from '../Brand/Brand'
+import Image from 'next/image'
 
 export const PasswordSignIn = () => {
   const router = useRouter()
@@ -21,9 +23,14 @@ export const PasswordSignIn = () => {
       onSubmit={handleSubmit}
       className="flex flex-col gap-y-4 items-stretch bg-white"
     >
-      <h2 className="mb-4 font-semibold text-base text-[var(dark-color)] max-md:text-xl max-md:text-center">
-        SIGN IN
-      </h2>
+      <Image
+        src="/logo.svg"
+        width={50}
+        height={50}
+        alt=""
+        priority
+        className="mx-auto mb-6 cursor-pointer"
+      />
       <Input name="username" placeholder="用户名" required autoComplete="off" />
       <PasswordInput />
       <button

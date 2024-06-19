@@ -18,13 +18,13 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const id = params.id  
+  const id = params.id
   const metaMap: Record<string, Metadata> = {
-    'password_signin': {
+    password_signin: {
       title: 'Sign In · Oh My Link',
       description: 'Sign In · Oh My Link',
     },
-    'signup': {
+    signup: {
       title: 'Sign Up · Oh My Link',
       description: 'Sign Up · Oh My Link',
     },
@@ -80,22 +80,22 @@ export default async function SignIn({
       <div className="px-8 text-center text-xs text-[var(--grey-color)] mt-5">
         {viewProp === 'password_signin' ? (
           <>
-            Don&apos;t have an account?{' '}
+            还没有账号?{' '}
             <a
               href="/signin/signup"
               className="cursor-pointer underline text-[#B996F7]"
             >
-              Sign up
+              我要注册
             </a>
           </>
         ) : (
           <>
-            Already have an account?{' '}
+            已经有账号了?{' '}
             <a
               href="/signin/password_signin"
               className="cursor-pointer underline text-[#B996F7]"
             >
-              Sign in
+              我要登录
             </a>
           </>
         )}
