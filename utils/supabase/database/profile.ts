@@ -58,9 +58,11 @@ export const createProfileForUser = async (formData: FormData) => {
   const supabase = createClient()
   const title = String(formData.get('title')).trim()
   const description = String(formData.get('description')).trim()
+  const picture = String(formData.get('profile_picture')).trim()
   const username = String(formData.get('username')).trim()
   const linkName = String(formData.get('linkName')).trim()
   const linkURL = String(formData.get('linkURL')).trim()
+  const pathname = String(formData.get('pathname')).trim()
 
   const { data, error } = await supabase
     .from('profiles')
@@ -68,11 +70,12 @@ export const createProfileForUser = async (formData: FormData) => {
       title,
       description,
       username,
+      picture,
     })
     .select()
 
   if (error) {
-    return getToastRedirect('/signup-next-step', 'error', error.message)
+    return getToastRedirect(pathname, 'error', error.message)
   } else if (data && data.length > 0) {
     const { data: data2, error } = await supabase
       .from('links')
@@ -84,7 +87,7 @@ export const createProfileForUser = async (formData: FormData) => {
       })
       .select()
     if (error) {
-      return getToastRedirect('/signup-next-step', 'error', error.message)
+      return getToastRedirect(pathname, 'error', error.message)
     } else if (data2 && data2.length > 0) {
       await supabase
         .from('users')
@@ -93,17 +96,13 @@ export const createProfileForUser = async (formData: FormData) => {
       return getToastRedirect('/', 'status', 'Your page setup was successful.')
     } else {
       return getToastRedirect(
-        '/signup-next-step',
+        pathname,
         'error',
         'You cloud be setup your page.'
       )
     }
   } else {
-    return getToastRedirect(
-      '/signup-next-step',
-      'error',
-      'You cloud be setup your page.'
-    )
+    return getToastRedirect(pathname, 'error', 'You cloud be setup your page.')
   }
 }
 
