@@ -1,9 +1,27 @@
+import { getPlaiceholder } from 'plaiceholder'
+
 export const getToastRedirect = (
   path: string,
   toastType: 'status' | 'error',
   message: string
 ): string => {
   return `${path}?type=${toastType}&message=${encodeURIComponent(message)}`
+}
+
+export const getImage = async (src = '') => {
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  )
+
+  const {
+    metadata: { height, width },
+    ...plaiceholder
+  } = await getPlaiceholder(buffer, { size: 10 })
+
+  return {
+    ...plaiceholder,
+    img: { src, height, width },
+  }
 }
 
 export const getURL = (path: string = '') => {
