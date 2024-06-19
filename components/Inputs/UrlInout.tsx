@@ -1,4 +1,3 @@
-import cn from 'classnames'
 import s from './Input.module.css'
 
 interface Props {
@@ -14,7 +13,7 @@ export const UrlInput: React.FC<Props> = ({
   return (
     <div className={s['wrapper']}>
       <input
-        style={{ paddingLeft: '96px' }}
+        style={{ paddingLeft: '101px' }}
         name={name}
         required
         placeholder={placeholder}
