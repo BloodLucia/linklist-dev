@@ -98,9 +98,9 @@ export const SetupYourPage = ({
               name="file"
               id="profile-picture-image"
               className="opacity-0 absolute top-0 bottom-0 right-0 left-0 w-full h-full cursor-pointer"
-              accept="images/*"
+              accept="image/*"
               required
-              onChange={uploadImage}
+              onChange={uploadImage}              
             />
           </div>
           <div className="flex flex-col gap-y-4 flex-1 max-sm:items-stretch">
