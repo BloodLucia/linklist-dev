@@ -1,7 +1,11 @@
+import { SiteContent } from '@/components/Layout/SiteContent'
+import { SiteHeader } from '@/components/Layout/SiteHeader'
+
 export default function Home() {
   return (
-    <div className="xl:w-[1140px] mx-auto">
-      hello
+    <div className='bg-[rgb(250,250,250)] min-h-screen'>
+      <SiteHeader />
+      <SiteContent />
     </div>
   )
 }

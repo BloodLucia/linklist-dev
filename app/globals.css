@@ -100,3 +100,33 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.ll-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  color: #3d4043;
+  font-weight: 600;
+  font-size: 18px;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 40px;
+}
+
+.ll-btn-bg1 {
+  background: linear-gradient(
+    63deg,
+    rgba(255, 250, 192, 1) 0,
+    rgba(192, 255, 248, 1) 100%
+  );
+}
+
+.ll-btn-bg2 {
+  background: linear-gradient(
+    63deg,
+    rgba(192, 255, 248, 1) 0,
+    rgba(227, 211, 255, 1) 80%
+  );
+}
+
