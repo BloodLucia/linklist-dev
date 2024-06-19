@@ -1,4 +1,3 @@
-import { DashboardTabs } from '@/components/Dashboard/DashboardTabs'
 import { DashboardHeader } from '@/components/Header/DashboardHeader'
 import { ProfilePreview } from '@/components/ProfilePreview/ProfilePreview'
 import { createClient } from '@/utils/supabase/server'
@@ -7,6 +6,7 @@ import { TopNav } from '@/components/Mobile/TopNav'
 import { getDbUser } from '@/utils/supabase/auth-helpers/queries'
 import { Tables } from '@/db_types'
 import type { Viewport } from 'next'
+import { DashboardTabs } from '@/components/Layout/DashboardTabs'
 
 export const viewport: Viewport = {
   userScalable: false,
