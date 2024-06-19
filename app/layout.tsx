@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next'
 import { Suspense } from 'react'
 import { Toaster } from '@/components/Toaster/Toaster'
 import './globals.css'
-import { Head } from 'next/document'
 
 export const metadata: Metadata = {
   title: 'LinkList',
