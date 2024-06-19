@@ -96,6 +96,7 @@ export const signUp = async (formData: FormData) => {
   const email = String(formData.get('email')).trim()
   const password = String(formData.get('password')).trim()
   const username = String(formData.get('username')).trim()
+  const pathname = String(formData.get('pathname')).trim()
   let redirectPath: string
 
   if (!validate(email)) {
@@ -115,7 +116,7 @@ export const signUp = async (formData: FormData) => {
   })
 
   if (error) {
-    redirectPath = getToastRedirect('/signin/signup', 'error', error.message)
+    redirectPath = getToastRedirect(pathname, 'error', error.message)
   } else if (data.session) {
     // save a user to database
     const { data, error } = await supabase
@@ -129,10 +130,10 @@ export const signUp = async (formData: FormData) => {
         'You are now signed in.'
       )
     } else if (error) {
-      redirectPath = getToastRedirect('/signin/signup', 'error', error?.message)
+      redirectPath = getToastRedirect(pathname, 'error', error?.message)
     } else {
       redirectPath = getToastRedirect(
-        '/signin/signup',
+        pathname,
         'error',
         'Internal Server Error.'
       )
@@ -143,7 +144,7 @@ export const signUp = async (formData: FormData) => {
     data.user.identities.length == 0
   ) {
     redirectPath = getToastRedirect(
-      '/signin/signup',
+      pathname,
       'error',
       'There is already an account associated with this email address. Try resetting your password.'
     )
@@ -155,7 +156,7 @@ export const signUp = async (formData: FormData) => {
     )
   } else {
     redirectPath = getToastRedirect(
-      '/signin/signup',
+      pathname,
       'error',
       'You could not be signed up.'
     )

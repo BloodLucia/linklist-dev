@@ -72,31 +72,37 @@ export default async function SignIn({
 
   return (
     <>
-      {viewProp === 'password_signin' && <PasswordSignIn />}
-      {viewProp === 'signup' && <SignUp />}
-
-      <div className="px-8 text-center text-xs text-[var(--grey-color)] mt-5">
-        {viewProp === 'password_signin' ? (
-          <>
-            还没有账号?{' '}
-            <a
-              href="/signin/signup"
-              className="cursor-pointer underline text-[#B996F7]"
-            >
-              我要注册
-            </a>
-          </>
-        ) : (
-          <>
-            已经有账号了?{' '}
-            <a
-              href="/signin/password_signin"
-              className="cursor-pointer underline text-[#B996F7]"
-            >
-              我要登录
-            </a>
-          </>
-        )}
+      <div className="min-h-screen bg-[#f9f9f9] flex justify-center items-center">
+        <div className="max-sm:w-full max-sm:min-h-screen max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:bg-white max-sm:px-6">
+          <div className="max-sm:w-full max-sm:p-0 w-[400px] rounded bg-white p-8 mx-auto">
+            <>
+              {viewProp === 'password_signin' ? <PasswordSignIn /> : <SignUp />}
+              <div className="px-8 text-center text-xs text-[var(--grey-color)] mt-5">
+                {viewProp === 'password_signin' ? (
+                  <>
+                    还没有账号?{' '}
+                    <a
+                      href="/signin/signup"
+                      className="cursor-pointer underline text-[#B996F7]"
+                    >
+                      我要注册
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    已经有账号了?{' '}
+                    <a
+                      href="/signin/password_signin"
+                      className="cursor-pointer underline text-[#B996F7]"
+                    >
+                      我要登录
+                    </a>
+                  </>
+                )}
+              </div>
+            </>
+          </div>
+        </div>
       </div>
     </>
   )

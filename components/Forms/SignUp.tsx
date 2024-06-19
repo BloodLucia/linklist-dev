@@ -1,9 +1,8 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
-import { LoaderCircle } from 'lucide-react'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { signUp } from '@/utils/supabase/auth-helpers/server'
 import { PasswordInput } from '../Inputs/PasswordInput'
@@ -43,6 +42,7 @@ export const SignUp: React.FC = () => {
           placeholder="邮箱"
           autoComplete="email"
         />
+        <input type="hidden" name="pathname" defaultValue={usePathname()} />
         <UrlInput />
         <PasswordInput />
         <Button
