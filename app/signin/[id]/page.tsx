@@ -21,12 +21,10 @@ export async function generateMetadata(
   const id = params.id
   const metaMap: Record<string, Metadata> = {
     password_signin: {
-      title: 'Sign In · Oh My Link',
-      description: 'Sign In · Oh My Link',
+      title: 'Sign In',
     },
     signup: {
-      title: 'Sign Up · Oh My Link',
-      description: 'Sign Up · Oh My Link',
+      title: 'Sign Up',
     },
   }
 

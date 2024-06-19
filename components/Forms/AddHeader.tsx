@@ -3,11 +3,11 @@
 import { Plus } from 'lucide-react'
 import { Modal } from '../Modal/Modal'
 import { useRef, useState } from 'react'
-import { Input } from '../Input/Input'
 import { usePathname, useRouter } from 'next/navigation'
 import Button from '../Button'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { createHeader } from '@/utils/supabase/database/profile'
+import { Input } from '../Inputs/Input'
 
 export const AddHeader: React.FC = () => {
   const router = useRouter()
@@ -35,7 +35,7 @@ export const AddHeader: React.FC = () => {
       <Modal
         visible={modalIsOpen}
         onClose={() => setModalIsOpen(false)}
-        title="Add Header"        
+        title="Add Header"
       >
         <form
           className="flex flex-col w-full items-stretch pb-8 z-20"
@@ -44,7 +44,10 @@ export const AddHeader: React.FC = () => {
         >
           <Input placeholder="title" name="title" required autoComplete="off" />
           <Input type="hidden" name="pathname" value={usePathname()} />
-          <Button disabled={isLoading} className="disabled:cursor-not-allowed absolute bottom-0 left-0 right-0 w-full oml-btn oml-bg text-white flex justify-center items-center">
+          <Button
+            disabled={isLoading}
+            className="disabled:cursor-not-allowed absolute bottom-0 left-0 right-0 w-full oml-btn oml-bg text-white flex justify-center items-center"
+          >
             {isLoading ? 'SAVING...' : 'SAVE'}
           </Button>
         </form>

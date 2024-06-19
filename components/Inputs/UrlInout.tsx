@@ -14,7 +14,7 @@ export const UrlInput: React.FC<Props> = ({
   return (
     <div className={s['wrapper']}>
       <input
-        style={{ paddingLeft: '103px' }}
+        style={{ paddingLeft: '96px' }}
         name={name}
         required
         placeholder={placeholder}

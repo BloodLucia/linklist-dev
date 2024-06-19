@@ -3,7 +3,7 @@
 }
 
 .input {
-  @apply bg-[rgba(13,12,34,0.05)] font-sans placeholder:text-[var(--grey-color)] text-[var(--text-dark)] w-full py-1.5 box-border border-2 border-transparent rounded text-base font-normal px-4 outline-none;
+  @apply bg-[rgba(13,12,34,0.05)] placeholder:text-[var(--grey-color)] text-[var(--text-dark)] w-full py-1.5 box-border border-2 border-transparent rounded text-base font-normal px-4 outline-none;
 }
 
 .input:focus {
@@ -14,6 +14,6 @@
   @apply absolute top-[50%] -translate-y-[50%] right-4 text-[var(--grey-color)];
 }
 
-.input:invalid {
+/* .input:invalid {
   @apply focus:border-[var(--danger-color)];
-}
+} */
