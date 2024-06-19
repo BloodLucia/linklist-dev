@@ -17,3 +17,11 @@
 /* .input:invalid {
   @apply focus:border-[var(--danger-color)];
 } */
+
+.input.error {
+  @apply border-2 border-danger focus:border-danger;
+}
+
+.input.ok {
+  @apply border-2 border-[var(--success-color)];
+}
