@@ -9,6 +9,7 @@ import { signUp } from '@/utils/supabase/auth-helpers/server'
 import { PasswordInput } from '../Inputs/PasswordInput'
 import { UrlInput } from '../Inputs/UrlInout'
 import { Input } from '../Inputs/Input'
+import { Button } from '../Buttons/Button'
 
 export const SignUp: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null)
@@ -44,13 +45,14 @@ export const SignUp: React.FC = () => {
         />
         <UrlInput />
         <PasswordInput />
-        <button
+        <Button
           type="submit"
+          level="normal"
           disabled={isLoading}
-          className="disabled:cursor-not-allowed bg-[var(--pr-color)] h-[40px] font-semibold text-white rounded mt-4 flex justify-center items-center"
+          className="mt-4"
         >
-          {isLoading ? <LoaderCircle className="animate-spin" /> : '注册'}
-        </button>
+          注册
+        </Button>
       </form>
     </>
   )

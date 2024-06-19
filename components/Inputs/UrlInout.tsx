@@ -23,7 +23,7 @@ export const UrlInput: React.FC<Props> = ({
         maxLength={20}
         minLength={4}
       />
-      <div className="absolute top-[50%] -translate-y-[50%] left-4 text-[var(--pr-color)]">
+      <div className="absolute top-[50%] -translate-y-[50%] left-4 text-textDark">
         linklist.one/
       </div>
     </div>

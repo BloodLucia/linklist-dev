@@ -15,7 +15,19 @@ const config: Config = {
       },
       colors: {
         primary: {
-          DEFAULT: "hex(var(--primary-color))"
+          DEFAULT: "var(--primary-color)"
+        },
+        secondary: {
+          DEFAULT: "var(--secondary-color)"
+        },
+        danger: {
+          DEFAULT: "var(--danger-color)"
+        },
+        textDark: {
+          DEFAULT: "var(--text-dark)"
+        },
+        textGrey: {
+          DEFAULT: "var(--text)"
         }
       }
     },

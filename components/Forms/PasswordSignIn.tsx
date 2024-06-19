@@ -2,13 +2,12 @@
 
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { signInWithUsernameAndPassword } from '@/utils/supabase/auth-helpers/server'
-import { LoaderCircle } from 'lucide-react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { PasswordInput } from '../Inputs/PasswordInput'
 import { Input } from '../Inputs/Input'
-import { Brand } from '../Brand/Brand'
 import Image from 'next/image'
+import { Button } from '../Buttons/Button'
 
 export const PasswordSignIn = () => {
   const router = useRouter()
@@ -33,17 +32,9 @@ export const PasswordSignIn = () => {
       />
       <Input name="username" placeholder="用户名" required autoComplete="off" />
       <PasswordInput />
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="disabled:cursor-not-allowed rounded-full bg-[#B996F7] text-white h-[40px] font-semibold mt-4 flex justify-center items-center"
-      >
-        {isLoading ? (
-          <LoaderCircle className="animate-spin text-gray-400" />
-        ) : (
-          '登录'
-        )}
-      </button>
+      <Button type="submit" className="mt-4" disabled={isLoading}>
+        登录
+      </Button>
     </form>
   )
 }

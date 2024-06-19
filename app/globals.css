@@ -2,25 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --blackbg-color: #161517;
-  --dark-color: #0d0c22;
-  --blue-color: #0095f6;
-  --blue-dark-color: #0075e4;
-  --danger-color: #ff4963;
-  --danger-dark-color: #e02b45;
-  /* --primary-color: #0095f6; */
-  --primary-color:#b996f7;
-  --grey-color: #6e6d7a;
-  --greybg-color: #e7e7e9;
-  --success-color: #70c050;
-  --btngrey-color: #f3f3f4;
+@layer base {
+  :root {
+    --blackbg-color: #161517;
+    --dark-color: #0d0c22;
+    --blue-color: #0095f6;
+    --blue-dark-color: #0075e4;
+    --danger-color: #ff4963;
+    --danger-dark-color: #e02b45;
+    /* --primary-color: #0095f6; */
+    --primary-color: #b996f7;
+    --secondary-color: #D4F796;
+    --grey-color: #6e6d7a;
+    --greybg-color: #e7e7e9;
+    --success-color: #70c050;
+    --btngrey-color: #f3f3f4;
+    --btn-height: 40px;
+    --text-dark: #3d4043;
+    --text-grey: #6e6d7a;
+    --pr-color: #b996f7;
+  }
+}
 
-  --btn-height: 40px;
-
-  --text-dark: #3d4043;
-  --pr-color: #B996F7;
-  /* --input-bg: 0d0c22 */
+@layer base {
+  * {
+    @apply box-border;
+  }
 }
 
 .bl-input {
@@ -136,5 +143,9 @@
 }
 
 .ll-btn-bg {
-  background-image: linear-gradient(63deg, rgba(255, 250, 192, 1) 0, rgba(192, 255, 248, 1) 100%);
+  background-image: linear-gradient(
+    63deg,
+    rgba(255, 250, 192, 1) 0,
+    rgba(192, 255, 248, 1) 100%
+  );
 }

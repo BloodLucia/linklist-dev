@@ -1,0 +1,20 @@
+.root {
+  @apply flex justify-center items-center w-full h-[40px] text-white font-semibold text-base px-3 rounded box-border border-2 border-transparent;
+}
+
+.root:disabled,
+.root[disabled] {
+  @apply cursor-not-allowed opacity-50;
+}
+
+.root.normal {
+  @apply bg-primary;
+}
+
+.root.danger {
+  @apply bg-danger;
+}
+
+.root.dashed {
+  @apply border-2 border-dashed border-primary text-black;
+}
