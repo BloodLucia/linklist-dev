@@ -32,11 +32,11 @@ export const DashboardHeader: React.FC<{ user?: Tables<'users'> | null }> = ({
               登出
             </Button>
           </form>
-          <div className="flex items-center gap-x-3">
+          {/* <div className="flex items-center gap-x-3">
             <div>{`${getURL().replace('http://', '')}/${user?.username}`}</div>
             <div>{user?.username}</div>
             <div>{user?.email}</div>
-          </div>
+          </div> */}
           <Menu width={32} height={32} cursor="pointer" className="md:hidden" />
         </div>
       </div>
