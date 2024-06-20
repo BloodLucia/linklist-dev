@@ -10,6 +10,7 @@ import { updateLink } from '@/utils/supabase/database/profile'
 import { Button } from '../Buttons/Button'
 import { Input } from '../Inputs/Input'
 import { Ellipsis, Link } from 'lucide-react'
+import { Reorder } from 'framer-motion'
 
 export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   links,
@@ -19,6 +20,8 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   const [isLoading, setIsLoading] = useState(false)
   const [selectedLink, setSelectedLink] = useState<Tables<'links'>>()
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const [_links, setLinks] = useState<Tables<'links'>[]>(links!)
+  const [items, setItems] = useState([0, 1, 2, 3])
   const handleLinkClick = (link: Tables<'links'>) => {
     setSelectedLink(link)
     setIsOpenModal(true)
@@ -33,14 +36,45 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   return (
     <>
       <div className="mt-8">
-        <div className={s['title']}>链接列表</div>
-        <ol className={s['root']}>
-          {links &&
-            links.map((link) => {
+        <div className="text-lg text-textDark font-bold mb-4 tracking-[1px]">
+          链接列表
+        </div>
+
+        <Reorder.Group<Tables<'links'>>
+          as="ol"
+          axis="y"
+          values={_links}
+          onReorder={setLinks}
+          className="grid grid-cols-1 gap-y-4"
+        >
+          {_links.map((item) => (
+            <Reorder.Item
+              as="li"
+              key={item.id}
+              value={item}
+              className="relative w-full rounded bg-white shadow-md px-6 py-4 cursor-pointer flex justify-between items-center text-sm"
+            >
+              <div className="grid grid-rows-2">
+                <div className={s['name']}>{item.name}</div>
+                <div className={s['url']}>
+                  <Link width={12} height={12} />
+                  {item.url}
+                </div>
+              </div>
+              <div>
+                <Ellipsis width={26} height={26} />
+              </div>
+            </Reorder.Item>
+          ))}
+        </Reorder.Group>
+
+        {/* <ol className={s['root']}>
+          {_links &&
+            _links.map((link) => {
               return (
                 <li
                   key={link.id}
-                  className={s['item']}
+                  className="relative w-full rounded bg-white shadow-md px-6 py-4 cursor-pointer flex justify-between items-center text-sm"
                   // onClick={() => handleLinkClick(link)}
                 >
                   <div className="grid grid-rows-2">
@@ -53,10 +87,11 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
                   <div>
                     <Ellipsis width={26} height={26} />
                   </div>
+                  <div className='absolute top-[100%] right-0 px-4 py-10 bg-black'></div>
                 </li>
               )
             })}
-        </ol>
+        </ol> */}
       </div>
       <Modal
         title="Edit Link"

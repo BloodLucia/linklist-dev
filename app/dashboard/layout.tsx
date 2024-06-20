@@ -34,7 +34,7 @@ export default async function Layout({
 
   return (
     <div className="min-h-screen bg-[#f9f9f9] relative">
-      <DashboardHeader />
+      <DashboardHeader user={dbUser} />
       <MobileTopNav />
       <main className="max-md:pt-[110px] pt-[60px] overflow-y-auto">
         <div className="grid grid-cols-2 max-md:grid-cols-1">
@@ -47,8 +47,6 @@ export default async function Layout({
           </div>
         </div>
       </main>
-      {/* <ProfilePreview /> */}
-
       <MobileProfilePreview user={dbUser} />
       <FloatButton />
     </div>

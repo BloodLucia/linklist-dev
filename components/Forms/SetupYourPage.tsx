@@ -11,7 +11,6 @@ import { Uploader } from '../Uploader/Uploader'
 
 export const SetupYourPage = ({
   user,
-  onUpload,
 }: {
   user: Tables<'users'>
   onUpload?: (url: string) => void

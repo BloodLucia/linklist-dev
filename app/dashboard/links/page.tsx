@@ -3,7 +3,6 @@ import { AddLink } from '@/components/Forms/AddLink'
 import { Links } from '@/components/Links/Links'
 import { ProfileHeaders } from '@/components/Profile/ProfileHeaders'
 import {
-  getHeadersForUser,
   getLinksForUser,
 } from '@/utils/supabase/database/profile'
 import { createClient } from '@/utils/supabase/server'
@@ -15,7 +14,7 @@ export default async function Page() {
   return (
     <>
       <AddLink />
-      {/* <AddHeader /> */}
+      <AddHeader />
       {/* <ProfileHeaders headers={headers} /> */}
       <Links links={links} />
     </>

@@ -3,16 +3,19 @@
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { signOut } from '@/utils/supabase/auth-helpers/server'
 import { usePathname } from 'next/navigation'
-import { Loader } from '../Loader/Loader'
 import { Menu } from 'lucide-react'
 import { useState } from 'react'
 import { Brand } from '../Brand/Brand'
 import { Button } from '../Buttons/Button'
+import { Tables } from '@/db_types'
+import { getURL } from '@/utils/helpers/helpers'
+import Image from 'next/image'
 
-export const DashboardHeader: React.FC<{ username?: string }> = ({
-  username,
+export const DashboardHeader: React.FC<{ user?: Tables<'users'> | null }> = ({
+  user,
 }) => {
   const [isLoading, setIsLoading] = useState(false)
+  // const {} = useUser()
   const handleSubmit = async (e: React.FocusEvent<HTMLFormElement>) => {
     setIsLoading(true)
     await handleRequest(e, signOut)
@@ -29,6 +32,11 @@ export const DashboardHeader: React.FC<{ username?: string }> = ({
               登出
             </Button>
           </form>
+          <div className="flex items-center gap-x-3">
+            <div>{`${getURL().replace('http://', '')}/${user?.username}`}</div>
+            <div>{user?.username}</div>
+            <div>{user?.email}</div>
+          </div>
           <Menu width={32} height={32} cursor="pointer" className="md:hidden" />
         </div>
       </div>
