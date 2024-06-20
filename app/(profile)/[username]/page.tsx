@@ -56,7 +56,7 @@ export default async function ProfilePage({
           alt=""
           decoding="async"
           loading="lazy"
-          className="mx-auto rounded-full overflow-hidden cursor-pointer"
+          className="mx-auto rounded-full overflow-hidden cursor-pointer w-[115px] h-[115px]"
         />
         <h1 className="text-black text-lg font-bold text-center mt-4">
           {profile?.title}
@@ -70,7 +70,7 @@ export default async function ProfilePage({
               return (
                 <div
                   key={link.id}
-                  className="relative animate-pulse rounded shadow-[4px_4px_0_#222222] transition-all duration-[0.14s] ease-out delay-0 box-border cursor-pointer hover:shadow-none hover:translate-x-1 hover:translate-y-1"
+                  className="relative rounded shadow-[4px_4px_0_#222222] transition-all duration-[0.14s] ease-out delay-0 box-border cursor-pointer hover:shadow-none hover:translate-x-1 hover:translate-y-1"
                 >
                   <div className="border-2 border-black bg-white rounded box-border h-full w-full absolute left-0 top-0 -z-10"></div>
                   <a
