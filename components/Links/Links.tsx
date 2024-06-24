@@ -9,6 +9,7 @@ import { deleteLink, updateLink } from '@/utils/supabase/database/profile'
 import { Button } from '../Buttons/Button'
 import { Input } from '../Inputs/Input'
 import { Link, LoaderCircle, Trash2 } from 'lucide-react'
+import { toast } from 'sonner'
 
 export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   links,
@@ -31,7 +32,12 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
     formRef.current?.reset()
   }
   const onLinkDelete = async () => {
-    if (!selectedLink) return
+    if (links && links.length === 1) {
+      return toast.warning('最少保留一个链接, 所以无法删除')
+    }
+    if (!selectedLink) {
+      return toast.warning('请先选中需要删除的链接')
+    }
     const formData = new FormData(formRef.current!)
     setIsDeleteing(true)
     const redirectUrl = await deleteLink(formData)

@@ -7,6 +7,7 @@ import { addLink } from '@/utils/supabase/database/profile'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { Button } from '../Buttons/Button'
 import { Input } from '../Inputs/Input'
+import { PathnameInput } from '../Inputs/PathnameInput'
 
 export const AddLink: React.FC = () => {
   const router = useRouter()
@@ -39,14 +40,9 @@ export const AddLink: React.FC = () => {
         >
           <Input name="name" placeholder="标题" required autoComplete="off" />
           <Input name="url" placeholder="URL" required autoComplete="off" />
-          <input
-            type="hidden"
-            name="pathname"
-            placeholder="URL"
-            defaultValue={usePathname()}
-          />
+          <PathnameInput />
           <Button type="submit" loading={isLoading}>
-            保存
+            添加
           </Button>
         </form>
       </Modal>
