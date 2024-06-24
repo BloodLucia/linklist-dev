@@ -278,17 +278,17 @@ export const addLink = async (formData: FormData) => {
       return getToastRedirect(pathname, 'error', error.message)
     }
     if (data && data.length > 0) {
-      return getToastRedirect(pathname, 'status', 'You are added a link.')
+      return getToastRedirect(pathname, 'status', '创建成功')
     }
   } else {
     await supabase.auth.signOut()
     return getToastRedirect(
       '/signin/password_signin',
       'error',
-      'You need to login first.'
+      '请先登录再进行操作'
     )
   }
-  return getToastRedirect(pathname, 'error', 'You cloud be add link.')
+  return getToastRedirect(pathname, 'error', '创建失败, 请稍后再试')
 }
 
 export const getHeadersForUser = cache(
