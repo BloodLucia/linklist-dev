@@ -3,6 +3,7 @@ import { mergeRefs } from 'react-merge-refs'
 import cn from 'classnames'
 import s from './Button.module.css'
 import Spinner from '../Spinner'
+import { Loader } from 'lucide-react'
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'slim' | 'flat'
@@ -48,7 +49,7 @@ const Button = forwardRef<HTMLButtonElement, Props>((props, buttonRef) => {
       {...rest}
     >
       {/* {children} */}
-      {loading ? <Spinner className="w-6 h-6 fill-white" /> : children}
+      {loading ? <Loader className="w-6 h-6 fill-white animate-spin" /> : children}
     </Component>
   )
 })
