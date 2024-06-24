@@ -1,6 +1,6 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
@@ -9,6 +9,7 @@ import { PasswordInput } from '../Inputs/PasswordInput'
 import { UrlInput } from '../Inputs/UrlInout'
 import { Input } from '../Inputs/Input'
 import { Button } from '../Buttons/Button'
+import { PathnameInput } from '../Inputs/PathnameInput'
 
 export const SignUp: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null)
@@ -42,7 +43,7 @@ export const SignUp: React.FC = () => {
           placeholder="邮箱"
           autoComplete="email"
         />
-        <input type="hidden" name="pathname" defaultValue={usePathname()} />
+        <PathnameInput />
         <UrlInput />
         <PasswordInput />
         <Button
