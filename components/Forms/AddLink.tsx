@@ -46,7 +46,7 @@ export const AddLink: React.FC = () => {
           className="flex flex-col items-stretch gap-y-4"
         >
           <Input name="name" placeholder="标题" required autoComplete="off" />
-          <Input name="url" placeholder="URL" required autoComplete="off" />
+          <Input name="url" placeholder="网址 (eg. https://linklist.one)" required autoComplete="off" />
           <PathnameInput />
           <Button type="submit" loading={isLoading}>
             添加
