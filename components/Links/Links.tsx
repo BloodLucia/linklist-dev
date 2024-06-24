@@ -101,11 +101,11 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
             autoCapitalize="off"
             autoComplete="off"
           />
-          <Input type="hidden" name="pathname" defaultValue={usePathname()} />
-          <Input type="hidden" name="id" defaultValue={selectedLink?.id} />
+          <input type="hidden" name="pathname" defaultValue={usePathname()} />
+          <input type="hidden" name="id" defaultValue={selectedLink?.id} />
           <div
             onClick={onLinkDelete}
-            className="text-center text-sm text-[var(--danger-color)] cursor-pointer flex justify-center items-center gap-x-1.5"
+            className="text-left text-sm text-[var(--danger-color)] cursor-pointer flex justify-start items-center gap-x-1.5"
           >
             {isDeleteing ? (
               <>
