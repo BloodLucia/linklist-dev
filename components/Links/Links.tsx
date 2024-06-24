@@ -5,9 +5,10 @@ import { useRef, useState } from 'react'
 import { Modal } from '../Modal/Modal'
 import { usePathname, useRouter } from 'next/navigation'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
-import { updateLink } from '@/utils/supabase/database/profile'
+import { deleteLink, updateLink } from '@/utils/supabase/database/profile'
 import { Button } from '../Buttons/Button'
 import { Input } from '../Inputs/Input'
+import { Link, Loader, Trash2 } from 'lucide-react'
 
 export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   links,
@@ -15,6 +16,7 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   const router = useRouter()
   const formRef = useRef<HTMLFormElement | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [isDeleteing, setIsDeleteing] = useState(false)
   const [selectedLink, setSelectedLink] = useState<Tables<'links'>>()
   const [isOpenModal, setIsOpenModal] = useState(false)
   const handleLinkClick = (link: Tables<'links'>) => {
@@ -27,6 +29,17 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
     setIsLoading(false)
     setIsOpenModal(false)
     formRef.current?.reset()
+  }
+  const onLinkDelete = async () => {
+    if (!selectedLink) return
+    const formData = new FormData(formRef.current!)
+    setIsDeleteing(true)
+    const redirectUrl = await deleteLink(formData)
+    setIsDeleteing(false)
+    setIsOpenModal(false)
+    formRef.current?.reset()
+    router.push(redirectUrl)
+    router.refresh()
   }
 
   return (
@@ -43,9 +56,17 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
                 <li
                   key={link.id}
                   onClick={() => handleLinkClick(link)}
-                  className="relative w-full rounded bg-white shadow-sm px-6 py-4 cursor-pointer flex justify-between items-center text-sm"
+                  className="relative w-full rounded bg-white shadow-sm px-6 py-4 cursor-pointer flex justify-between items-center"
                 >
-                  {link.name}
+                  <div className="grid grid-rows-1 gap-y-1.5">
+                    <span className="font-semibold text-base text-[var(--dark-color)]">
+                      {link.name}
+                    </span>
+                    <span className="text-xs text-[var(--grey-color)] grid grid-flow-col items-center gap-x-1 text-ellipsis overflow-hidden break-all">
+                      <Link width={16} height={16} />
+                      {link.url}
+                    </span>
+                  </div>
                 </li>
               )
             })}
@@ -82,6 +103,22 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
           />
           <Input type="hidden" name="pathname" defaultValue={usePathname()} />
           <Input type="hidden" name="id" defaultValue={selectedLink?.id} />
+          <div
+            onClick={onLinkDelete}
+            className="text-center text-sm text-[var(--danger-color)] cursor-pointer flex justify-center items-center gap-x-1.5"
+          >
+            {isDeleteing ? (
+              <>
+                <Loader className="animate-spin" width={16} height={16} />
+                <span>删除中...</span>
+              </>
+            ) : (
+              <>
+                <Trash2 width={16} height={16} />
+                <span>删除链接</span>
+              </>
+            )}
+          </div>
           <Button type="submit" disabled={isLoading}>
             保存
           </Button>

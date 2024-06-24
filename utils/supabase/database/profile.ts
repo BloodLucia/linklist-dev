@@ -172,6 +172,30 @@ export const updateProfile = async (formData: FormData) => {
   }
 }
 
+export const deleteLink = async (formData: FormData) => {
+  const id = String(formData.get('id'))
+  const pathname = String(formData.get('pathname'))
+  const supabase = createClient()
+  const dbProfile = await getCurrentUserProfile(supabase)
+
+  const { data, error } = await supabase
+    .from('links')
+    .delete()
+    .eq('id', id)
+    .eq('profile_id', dbProfile!.id)
+    .select()
+
+  if (error) {
+    return getToastRedirect(pathname, 'error', error.message)
+  }
+
+  if (data && data.length > 0) {
+    return getToastRedirect(pathname, 'status', `成功删除${data.length}条链接`)
+  }
+
+  return getToastRedirect(pathname, 'error', '删除失败, 请稍后再试~')
+}
+
 export const updateLink = async (formData: FormData) => {
   const name = String(formData.get('name')).trim()
   const url = String(formData.get('url')).trim()
