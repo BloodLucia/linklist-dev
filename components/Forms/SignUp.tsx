@@ -23,8 +23,8 @@ export const SignUp: React.FC = () => {
 
   return (
     <>
-    <div>已关闭注册</div>
-      {/* <form
+      {/* <div>已关闭注册</div> */}
+      <form
         ref={formRef}
         onSubmit={handleSubmit}
         className="flex flex-col gap-y-4 items-stretch bg-white"
@@ -55,7 +55,7 @@ export const SignUp: React.FC = () => {
         >
           注册
         </Button>
-      </form> */}
+      </form>
     </>
   )
 }
