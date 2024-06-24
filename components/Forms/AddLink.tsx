@@ -24,15 +24,7 @@ export const AddLink: React.FC = () => {
   return (
     <>
       <div className="grid grid-flow-col gap-x-2 ">
-        <button
-          className="oml-bg oml-btn text-white rounded flex justify-center items-center"
-          onClick={() => setIsOpenModal(true)}
-        >
-          添加链接
-        </button>
-        <button className="bg-[--primary-color] text-white rounded flex justify-center items-center font-semibold">
-          ADD EMBED
-        </button>
+        <Button onClick={() => setIsOpenModal(true)}>添加链接</Button>
       </div>
       <Modal
         title="添加链接"

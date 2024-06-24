@@ -12,14 +12,16 @@ export const Button: React.FC<Props> = (props) => {
     disabled = false,
     className,
     children,
+    ...rest
   } = props
   return (
     <button
       type={type}
       disabled={disabled}
       className={cn(s['root'], s[level], className)}
+      {...rest}
     >
-      {disabled ? <LoaderCircle className='animate-spin' /> : children}
+      {disabled ? <LoaderCircle className="animate-spin" /> : children}
     </button>
   )
 }
