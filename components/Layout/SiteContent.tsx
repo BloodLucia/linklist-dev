@@ -17,14 +17,12 @@ export const SiteContent = () => {
             <a href="/signin/signup" className="ll-btn ll-btn-bg1 rounded-full">
               注册
             </a>
-            <div className='ll-btn-bg border-4 box-border border-transparent rounded-full bg-origin-border'>
-              <a
-                href="/signin/password_signin"
-                className="flex justify-center box-border items-center rounded-full bg-white bg-origin-border h-[40px] font-semibold text-md"
-              >
-                登录
-              </a>
-            </div>
+            <a
+              href="/signin/password_signin"
+              className="ll-btn ll-btn-bg2 rounded-full"
+            >
+              登录
+            </a>
           </div>
         </section>
         <section className="w-full flex items-start justify-center max-md:pb-8">
