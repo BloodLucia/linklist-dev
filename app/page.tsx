@@ -14,9 +14,9 @@ export default async function Home() {
   }
 
   return (
-    <div className="bg-[#f9f9f9] min-h-screen">
-      <SiteHeader logged={!!user} />
-      <SiteContent logged={!!user} />
+    <div className="bg-[#f9f9f9] min-h-dvh">
+      <SiteHeader />
+      <SiteContent />
     </div>
   )
 }

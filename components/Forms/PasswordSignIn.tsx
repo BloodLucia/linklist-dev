@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { PasswordInput } from '../Inputs/PasswordInput'
 import { Input } from '../Inputs/Input'
-import { Button } from '../Buttons/Button'
+import { Button } from '../Button/Button'
 import { signInWithPasswordAndUserName } from '@/app/signin/actions'
 import { PathnameInput } from '../Inputs/PathnameInput'
 

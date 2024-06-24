@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { Modal } from '../Modal/Modal'
 import { addLink } from '@/utils/supabase/database/profile'
-import { Button } from '../Buttons/Button'
+import { Button } from '../Button/Button'
 import { Input } from '../Inputs/Input'
 import { PathnameInput } from '../Inputs/PathnameInput'
 import { Plus } from 'lucide-react'
@@ -45,8 +45,8 @@ export const AddLink: React.FC = () => {
           action="POST"
           className="flex flex-col items-stretch gap-y-4"
         >
-          <Input name="name" placeholder="标题" required autoComplete="off" />
-          <Input name="url" placeholder="网址 (eg. https://linklist.one)" required autoComplete="off" />
+          <Input name="name" placeholder="标题" required />
+          <Input name="url" placeholder="URL (eg. https://linklist.one)" required />
           <PathnameInput />
           <Button type="submit" loading={isLoading}>
             添加

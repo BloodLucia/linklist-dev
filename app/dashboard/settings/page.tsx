@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@/components/Buttons/Button'
+import { Button } from '@/components/Button/Button'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { signOut } from '@/utils/supabase/auth-helpers/server'
 import { usePathname } from 'next/navigation'

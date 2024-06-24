@@ -1,3 +1,4 @@
+import { SaveProfile } from '@/components/Forms/SaveProfile'
 import { Tables } from '@/db_types'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
@@ -21,8 +22,8 @@ export default async function Design() {
   // const profile = await getCurre
   return (
     <div className="grid gap-y-4">
-      <div>正在开发中...</div>
-      {/* <SaveProfile profile={profile} /> */}
+      {/* <div>正在开发中...</div> */}
+      <SaveProfile profile={profile} />
     </div>
   )
 }

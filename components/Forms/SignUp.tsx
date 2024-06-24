@@ -8,7 +8,7 @@ import { signUp } from '@/utils/supabase/auth-helpers/server'
 import { PasswordInput } from '../Inputs/PasswordInput'
 import { UrlInput } from '../Inputs/UrlInout'
 import { Input } from '../Inputs/Input'
-import { Button } from '../Buttons/Button'
+import { Button } from '../Button/Button'
 import { PathnameInput } from '../Inputs/PathnameInput'
 
 export const SignUp: React.FC = () => {

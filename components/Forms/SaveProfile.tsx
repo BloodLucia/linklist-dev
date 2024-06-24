@@ -1,10 +1,9 @@
 'use client'
 
 import { Tables } from '@/db_types'
-import { Button } from '../Buttons/Button'
+import { Button } from '../Button/Button'
 import { Input } from '../Inputs/Input'
 import { useState } from 'react'
-import cn from 'classnames'
 import { updateProfile } from '@/utils/supabase/database/profile'
 import { useRouter } from 'next/navigation'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
@@ -15,7 +14,6 @@ export const SaveProfile: React.FC<{ profile: Tables<'profiles'> }> = ({
   const router = useRouter()
   const [saveButtonIsVisible, setSaveButtonIsVisible] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [isUploading, setIsUploading] = useState(false)
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
     await handleRequest(e, updateProfile, router)
@@ -45,23 +43,19 @@ export const SaveProfile: React.FC<{ profile: Tables<'profiles'> }> = ({
           placeholder="页面标题"
           required
           defaultValue={profile.title}
-          autoComplete="off"
           onChange={handleChange}
         />
         <Input
           placeholder="页面描述"
           required
           defaultValue={profile.description}
-          autoComplete="off"
           onChange={handleChange}
         />
         <Button
           type="submit"
+          disabled={saveButtonIsVisible}
           loading={isLoading}
-          className={cn(
-            'mt-3',
-            !saveButtonIsVisible ? 'cursor-not-allowed opacity-50' : ''
-          )}
+          className="mt-3"
         >
           保存
         </Button>

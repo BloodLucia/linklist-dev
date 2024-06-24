@@ -6,7 +6,7 @@ import { Modal } from '../Modal/Modal'
 import { usePathname, useRouter } from 'next/navigation'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { deleteLink, updateLink } from '@/utils/supabase/database/profile'
-import { Button } from '../Buttons/Button'
+import { Button } from '../Button/Button'
 import { Input } from '../Inputs/Input'
 import { Link, LoaderCircle, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
@@ -94,9 +94,6 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
             placeholder="Title"
             defaultValue={selectedLink?.name}
             required
-            autoCapitalize="off"
-            autoComplete="off"
-            spellCheck={false}
           />
           <Input
             type="url"
@@ -104,8 +101,6 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
             placeholder="URL"
             defaultValue={selectedLink?.url}
             required
-            autoCapitalize="off"
-            autoComplete="off"
           />
           <input type="hidden" name="pathname" defaultValue={usePathname()} />
           <input type="hidden" name="id" defaultValue={selectedLink?.id} />

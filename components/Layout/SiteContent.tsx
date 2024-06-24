@@ -1,8 +1,6 @@
 import Image from 'next/image'
 
-export const SiteContent: React.FC<{ logged?: boolean }> = ({
-  logged = false,
-}) => {
+export const SiteContent = () => {
   return (
     <main className="pt-[49px] overflow-y-auto overflow-x-hidden w-full">
       <div className="xl:max-w-6xl mx-auto max-md:w-full px-4 max-md:min-h-screen grid items-end max-md:grid-cols-1 grid-cols-2">

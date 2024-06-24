@@ -6,7 +6,7 @@ import { createProfileForUser } from '@/utils/supabase/database/profile'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Input } from '../Inputs/Input'
-import { Button } from '../Buttons/Button'
+import { Button } from '../Button/Button'
 import { Uploader } from '../Uploader/Uploader'
 
 export const SetupYourPage = ({

@@ -3,13 +3,10 @@
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { signOut } from '@/utils/supabase/auth-helpers/server'
 import { usePathname } from 'next/navigation'
-import { Menu } from 'lucide-react'
 import { useState } from 'react'
 import { Brand } from '../Brand/Brand'
-import { Button } from '../Buttons/Button'
+import { Button } from '../Button/Button'
 import { Tables } from '@/db_types'
-import { getURL } from '@/utils/helpers/helpers'
-import Image from 'next/image'
 
 export const DashboardHeader: React.FC<{ user?: Tables<'users'> | null }> = ({
   user,

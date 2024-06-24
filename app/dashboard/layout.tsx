@@ -1,11 +1,11 @@
 import type { Viewport } from 'next'
-import { DashboardHeader } from '@/components/Header/DashboardHeader'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { getDbUser } from '@/utils/supabase/auth-helpers/queries'
 import { Tables } from '@/db_types'
 import { DashboardTabs } from '@/components/Layout/DashboardTabs'
 import { MobileTopNav } from '@/components/Layout/TopNav'
+import { DashboardHeader } from '@/components/Layout/DashboardHeader'
 
 export const viewport: Viewport = {
   userScalable: false,
