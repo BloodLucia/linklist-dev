@@ -1,14 +1,11 @@
 import type { Viewport } from 'next'
 import { DashboardHeader } from '@/components/Header/DashboardHeader'
-import { ProfilePreview } from '@/components/ProfilePreview/ProfilePreview'
-import { ProfilePreview as MobileProfilePreview } from '@/components/Mobile/ProfilePreview'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { getDbUser } from '@/utils/supabase/auth-helpers/queries'
 import { Tables } from '@/db_types'
 import { DashboardTabs } from '@/components/Layout/DashboardTabs'
 import { MobileTopNav } from '@/components/Layout/TopNav'
-import { FloatButton } from '@/components/Buttons/FloatButton'
 
 export const viewport: Viewport = {
   userScalable: false,
