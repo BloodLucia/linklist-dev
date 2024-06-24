@@ -1,13 +1,14 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
-import { Modal } from '../Modal/Modal'
+import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
-import { addLink } from '@/utils/supabase/database/profile'
 import { handleRequest } from '@/utils/supabase/auth-helpers/client'
+import { Modal } from '../Modal/Modal'
+import { addLink } from '@/utils/supabase/database/profile'
 import { Button } from '../Buttons/Button'
 import { Input } from '../Inputs/Input'
 import { PathnameInput } from '../Inputs/PathnameInput'
+import { Plus } from 'lucide-react'
 
 export const AddLink: React.FC = () => {
   const router = useRouter()
@@ -25,7 +26,13 @@ export const AddLink: React.FC = () => {
   return (
     <>
       <div className="grid grid-flow-col gap-x-2 ">
-        <Button onClick={() => setIsOpenModal(true)}>添加链接</Button>
+        <Button
+          className="flex items-center gap-x-1"
+          onClick={() => setIsOpenModal(true)}
+        >
+          <Plus width={20} height={20} />
+          添加链接
+        </Button>
       </div>
       <Modal
         title="添加链接"

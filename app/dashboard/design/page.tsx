@@ -1,4 +1,3 @@
-import { SaveProfile } from '@/components/Forms/SaveProfile'
 import { Tables } from '@/db_types'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
