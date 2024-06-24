@@ -22,8 +22,8 @@ export default async function Design() {
   // const profile = await getCurre
   return (
     <div className="grid gap-y-4">
-      {/* <div>正在开发中...</div> */}
-      <SaveProfile profile={profile} />
+      <div>正在开发中...</div>
+      {/* <SaveProfile profile={profile} /> */}
     </div>
   )
 }
