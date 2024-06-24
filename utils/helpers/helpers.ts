@@ -1,5 +1,3 @@
-import { getPlaiceholder } from 'plaiceholder'
-
 export const getToastRedirect = (
   path: string,
   toastType: 'status' | 'error',
@@ -7,31 +5,6 @@ export const getToastRedirect = (
 ): string => {
   return `${path}?type=${toastType}&message=${encodeURIComponent(message)}`
 }
-
-// export const getBlurData = async (src: string) => {
-//   const buffer = await fetch(src).then(async (res) =>
-//     Buffer.from(await res.arrayBuffer())
-//   )
-
-//   const data = await getPlaiceholder(buffer)
-//   return data
-// }
-
-// export const getImage = async (src = '') => {
-//   const buffer = await fetch(src).then(async (res) =>
-//     Buffer.from(await res.arrayBuffer())
-//   )
-
-//   const {
-//     metadata: { height, width },
-//     ...plaiceholder
-//   } = await getPlaiceholder(buffer, { size: 10 })
-
-//   return {
-//     ...plaiceholder,
-//     img: { src, height, width },
-//   }
-// }
 
 export const getURL = (path: string = '') => {
   // Check if NEXT_PUBLIC_SITE_URL is set and non-empty. Set this to your site URL in production env.

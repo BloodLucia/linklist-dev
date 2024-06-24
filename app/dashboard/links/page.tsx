@@ -1,10 +1,7 @@
 import { AddHeader } from '@/components/Forms/AddHeader'
 import { AddLink } from '@/components/Forms/AddLink'
 import { Links } from '@/components/Links/Links'
-import { ProfileHeaders } from '@/components/Profile/ProfileHeaders'
-import {
-  getLinksForUser,
-} from '@/utils/supabase/database/profile'
+import { getLinksForUser } from '@/utils/supabase/database/profile'
 import { createClient } from '@/utils/supabase/server'
 
 export default async function Page() {
@@ -14,9 +11,9 @@ export default async function Page() {
   return (
     <>
       <AddLink />
-      <AddHeader />
-      {/* <ProfileHeaders headers={headers} /> */}
+      {/* <AddHeader /> */}
       <Links links={links} />
+      {/* <Drawer isOpen /> */}
     </>
   )
 }

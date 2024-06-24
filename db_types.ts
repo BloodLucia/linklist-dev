@@ -51,6 +51,7 @@ export type Database = {
           id: string
           name: string
           profile_id: string
+          sort: number
           url: string
           user_id: string
           username: string
@@ -61,6 +62,7 @@ export type Database = {
           id?: string
           name: string
           profile_id: string
+          sort?: number
           url: string
           user_id?: string
           username: string
@@ -71,6 +73,7 @@ export type Database = {
           id?: string
           name?: string
           profile_id?: string
+          sort?: number
           url?: string
           user_id?: string
           username?: string

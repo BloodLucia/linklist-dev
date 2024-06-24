@@ -33,13 +33,13 @@ export default async function Layout({
   }
 
   return (
-    <div className="min-h-screen bg-[#f9f9f9] relative">
+    <div className="min-h-dvh w-full h-full bg-[#f9f9f9] relative overflow-hidden">
       <DashboardHeader user={dbUser} />
       <MobileTopNav />
-      <main className="max-md:pt-[110px] pt-[60px] overflow-y-auto">
+      <main className="w-full h-full max-md:pt-[110px] pt-[60px] overflow-y-auto">
         <div className="grid grid-cols-2 max-md:grid-cols-1">
           <aside className="max-md:hidden bg-white flex justify-center items-center">
-            <ProfilePreview username={dbUser?.username} />
+            {/* <ProfilePreview username={dbUser?.username} /> */}
           </aside>
           <div className="px-10 py-12 max-md:w-full max-md:px-6 max-md:py-10">
             <DashboardTabs />
@@ -47,8 +47,8 @@ export default async function Layout({
           </div>
         </div>
       </main>
-      <MobileProfilePreview user={dbUser} />
-      <FloatButton />
+      {/* <MobileProfilePreview user={dbUser} /> */}
+      {/* <FloatButton /> */}
     </div>
   )
 }

@@ -85,7 +85,10 @@ export const Uploader: React.FC<Props> = ({ className, onUpload, onError }) => {
             alt=""
             className="w-full h-full object-cover rounded-full"
           />
-          <X onClick={() => setImgUrl('')} className="absolute top-0 right-0 z-20 cursor-pointer bg-black text-white rounded-full" />
+          <X
+            onClick={() => setImgUrl('')}
+            className="absolute top-0 right-0 z-20 cursor-pointer bg-black text-white rounded-full"
+          />
         </>
       )}
     </div>

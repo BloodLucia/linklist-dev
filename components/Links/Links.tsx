@@ -1,7 +1,6 @@
 'use client'
 
 import { Tables } from '@/db_types'
-import s from './Links.module.css'
 import { useRef, useState } from 'react'
 import { Modal } from '../Modal/Modal'
 import { usePathname, useRouter } from 'next/navigation'
@@ -9,8 +8,6 @@ import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { updateLink } from '@/utils/supabase/database/profile'
 import { Button } from '../Buttons/Button'
 import { Input } from '../Inputs/Input'
-import { Ellipsis, Link } from 'lucide-react'
-import { Reorder } from 'framer-motion'
 
 export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   links,
@@ -20,8 +17,6 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   const [isLoading, setIsLoading] = useState(false)
   const [selectedLink, setSelectedLink] = useState<Tables<'links'>>()
   const [isOpenModal, setIsOpenModal] = useState(false)
-  const [_links, setLinks] = useState<Tables<'links'>[]>(links!)
-  const [items, setItems] = useState([0, 1, 2, 3])
   const handleLinkClick = (link: Tables<'links'>) => {
     setSelectedLink(link)
     setIsOpenModal(true)
@@ -33,6 +28,7 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
     setIsOpenModal(false)
     formRef.current?.reset()
   }
+
   return (
     <>
       <div className="mt-8">
@@ -40,11 +36,29 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
           链接列表
         </div>
 
-        <Reorder.Group<Tables<'links'>>
+        <ol className="grid grid-cols-1 gap-y-4">
+          {links &&
+            links.map((link) => {
+              return (
+                <li
+                  key={link.id}
+                  onClick={() => handleLinkClick(link)}
+                  className="relative w-full rounded bg-white shadow-sm px-6 py-4 cursor-pointer flex justify-between items-center text-sm"
+                >
+                  {link.name}
+                </li>
+              )
+            })}
+        </ol>
+
+        {/* <Reorder.Group<Tables<'links'>>
           as="ol"
           axis="y"
           values={_links}
           onReorder={setLinks}
+          dragListener
+          dragControls={dragControls}
+          onPointerDown={(e) => console.log(e)}
           className="grid grid-cols-1 gap-y-4"
         >
           {_links.map((item) => (
@@ -66,7 +80,7 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
               </div>
             </Reorder.Item>
           ))}
-        </Reorder.Group>
+        </Reorder.Group> */}
 
         {/* <ol className={s['root']}>
           {_links &&
@@ -94,7 +108,7 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
         </ol> */}
       </div>
       <Modal
-        title="Edit Link"
+        title="编辑链接"
         visible={isOpenModal}
         onClose={() => setIsOpenModal(false)}
       >

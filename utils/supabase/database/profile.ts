@@ -297,6 +297,7 @@ export const getLinksForUser = async (supabase: SupabaseClient<Database>) => {
       .select('*')
       .eq('user_id', user.id)
       .eq('profile_id', dbProfile.id)
+      .order('sort')
     return data
   }
   return null
