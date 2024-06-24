@@ -45,7 +45,7 @@ export const AddLink: React.FC = () => {
             placeholder="URL"
             defaultValue={usePathname()}
           />
-          <Button type="submit" disabled={isLoading}>
+          <Button type="submit" loading={isLoading}>
             保存
           </Button>
         </form>

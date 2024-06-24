@@ -1,7 +1,4 @@
-import { Button } from '@/components/Buttons/Button'
 import { SaveProfile } from '@/components/Forms/SaveProfile'
-import { Input } from '@/components/Inputs/Input'
-import { Uploader } from '@/components/Uploader/Uploader'
 import { Tables } from '@/db_types'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'

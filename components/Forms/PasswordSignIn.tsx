@@ -30,10 +30,15 @@ export const PasswordSignIn = () => {
         priority
         className="mx-auto mb-6 cursor-pointer"
       />
-      <Input name="username" placeholder="用户名" required autoComplete="username" />
-      <input type="hidden" name="pathname" defaultValue={usePathname()} />
+      <Input name="username" placeholder="用户名" required autoComplete="off" />
+      <input
+        type="hidden"
+        name="pathname"
+        defaultValue={usePathname()}
+        autoComplete="off"
+      />
       <PasswordInput />
-      <Button type="submit" className="mt-4" disabled={isLoading}>
+      <Button type="submit" className="mt-4" loading={isLoading}>
         登录
       </Button>
     </form>

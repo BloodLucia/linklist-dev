@@ -28,7 +28,7 @@ export const DashboardHeader: React.FC<{ user?: Tables<'users'> | null }> = ({
         <div className="flex gap-x-3">
           <form onSubmit={handleSubmit} className="max-md:hidden">
             <input type="hidden" name="pathname" value={usePathname()} />
-            <Button disabled={isLoading} level="danger" type="submit">
+            <Button loading={isLoading} level="danger" type="submit">
               登出
             </Button>
           </form>

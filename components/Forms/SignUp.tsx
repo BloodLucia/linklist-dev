@@ -48,7 +48,7 @@ export const SignUp: React.FC = () => {
         <Button
           type="submit"
           level="normal"
-          disabled={isLoading}
+          loading={isLoading}
           className="mt-4"
         >
           注册

@@ -57,7 +57,7 @@ export const SaveProfile: React.FC<{ profile: Tables<'profiles'> }> = ({
         />
         <Button
           type="submit"
-          disabled={isLoading}
+          loading={isLoading}
           className={cn(
             'mt-3',
             !saveButtonIsVisible ? 'cursor-not-allowed opacity-50' : ''

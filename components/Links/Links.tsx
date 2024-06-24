@@ -8,7 +8,7 @@ import { handleRequest } from '@/utils/supabase/auth-helpers/client'
 import { deleteLink, updateLink } from '@/utils/supabase/database/profile'
 import { Button } from '../Buttons/Button'
 import { Input } from '../Inputs/Input'
-import { Link, Loader, Trash2 } from 'lucide-react'
+import { Link, LoaderCircle, Trash2 } from 'lucide-react'
 
 export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
   links,
@@ -109,7 +109,7 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
           >
             {isDeleteing ? (
               <>
-                <Loader className="animate-spin" width={16} height={16} />
+                <LoaderCircle className="animate-spin" width={16} height={16} />
                 <span>删除中...</span>
               </>
             ) : (
@@ -119,7 +119,7 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
               </>
             )}
           </div>
-          <Button type="submit" disabled={isLoading}>
+          <Button type="submit" loading={isLoading}>
             保存
           </Button>
         </form>

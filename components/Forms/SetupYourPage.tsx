@@ -76,7 +76,7 @@ export const SetupYourPage = ({
             />
           </div>
         </div>
-        <Button type="submit" className="mt-6" disabled={isLoading}>
+        <Button type="submit" className="mt-6" loading={isLoading}>
           立即开始
         </Button>
       </form>

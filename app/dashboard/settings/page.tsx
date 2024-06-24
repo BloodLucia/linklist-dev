@@ -18,7 +18,7 @@ export default function Page() {
       <form onSubmit={handleSubmit}>
         <input type="hidden" name="pathname" value={usePathname()} />
         <Button
-          disabled={isLoading}
+          loading={isLoading}
           level="danger"
           type="submit"
           className="w-full"
