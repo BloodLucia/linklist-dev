@@ -37,7 +37,7 @@ export const DashboardHeader: React.FC<{ user?: Tables<'users'> | null }> = ({
             <div>{user?.username}</div>
             <div>{user?.email}</div>
           </div> */}
-          <Menu width={32} height={32} cursor="pointer" className="md:hidden" />
+          {/* <Menu width={32} height={32} cursor="pointer" className="md:hidden" /> */}
         </div>
       </div>
     </header>
