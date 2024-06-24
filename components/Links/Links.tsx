@@ -50,62 +50,6 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
               )
             })}
         </ol>
-
-        {/* <Reorder.Group<Tables<'links'>>
-          as="ol"
-          axis="y"
-          values={_links}
-          onReorder={setLinks}
-          dragListener
-          dragControls={dragControls}
-          onPointerDown={(e) => console.log(e)}
-          className="grid grid-cols-1 gap-y-4"
-        >
-          {_links.map((item) => (
-            <Reorder.Item
-              as="li"
-              key={item.id}
-              value={item}
-              className="relative w-full rounded bg-white shadow-md px-6 py-4 cursor-pointer flex justify-between items-center text-sm"
-            >
-              <div className="grid grid-rows-2">
-                <div className={s['name']}>{item.name}</div>
-                <div className={s['url']}>
-                  <Link width={12} height={12} />
-                  {item.url}
-                </div>
-              </div>
-              <div>
-                <Ellipsis width={26} height={26} />
-              </div>
-            </Reorder.Item>
-          ))}
-        </Reorder.Group> */}
-
-        {/* <ol className={s['root']}>
-          {_links &&
-            _links.map((link) => {
-              return (
-                <li
-                  key={link.id}
-                  className="relative w-full rounded bg-white shadow-md px-6 py-4 cursor-pointer flex justify-between items-center text-sm"
-                  // onClick={() => handleLinkClick(link)}
-                >
-                  <div className="grid grid-rows-2">
-                    <div className={s['name']}>{link.name}</div>
-                    <div className={s['url']}>
-                      <Link width={12} height={12} />
-                      {link.url}
-                    </div>
-                  </div>
-                  <div>
-                    <Ellipsis width={26} height={26} />
-                  </div>
-                  <div className='absolute top-[100%] right-0 px-4 py-10 bg-black'></div>
-                </li>
-              )
-            })}
-        </ol> */}
       </div>
       <Modal
         title="编辑链接"
@@ -125,6 +69,7 @@ export const Links: React.FC<{ links: Tables<'links'>[] | null }> = ({
             required
             autoCapitalize="off"
             autoComplete="off"
+            spellCheck={false}
           />
           <Input
             type="url"
